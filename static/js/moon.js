@@ -1,0 +1,204 @@
+var home_moon_id = 'div#home_effect div#home_moon'
+var orbits = new Array()
+
+function reset_moon() {
+    // Vertical align is pain with css. .. reset the top of the moon (for tablets)
+    var moon_img_w = 1920, 
+        moon_img_h = 1080,
+        moon_img = $(home_moon_id + " img#home_moon_img"),
+        parent_h = $(home_moon_id).height(),
+        parent_w = $(home_moon_id).width(),
+        moon_h = moon_img.height(),
+        moon_w = moon_img.width();
+    
+    if ( parent_w / moon_img_w > parent_h / moon_img_h ) { // height is less
+        var w = (parent_h / moon_img_h * moon_img_w)
+        moon_img.css( {
+            'top' : '0px',
+            'left' : ( ( parent_w - w ) / 2 ) + "px" ,
+            'height' : parent_h + 'px',
+            'width' : w + "px"
+        } );
+    } else { // width is less
+        var h = (parent_w / moon_img_w * moon_img_h)
+        moon_img.css( {
+            'left' : '0px',
+            'top' : ( ( parent_h - h ) / 2 ) + "px" ,
+            'width' : parent_w + 'px',
+            'height' : h + "px"
+        } );
+    }
+    
+}
+
+function Orbit() {
+    var _this = this;
+    _this.elem_id = "";                                  // another variable which holds the element id
+    _this.auto_pid = null;                                  // PID of automatic refreshing
+    _this.angle = 0;                                       // starting position (degrees)
+    _this.distancex = 200;                                  // distance of b from a
+    _this.distancey = 200;                                  // distance of b from a
+    _this.speed = 1500;                                       // revolution speed in degrees per second
+    _this.rate  = 10;                                       // refresh rate in ms
+    _this.init_moon = $(home_moon_id).get(0);             // the position of the moon
+    nelem = 3;
+
+    _this.stop = function() {
+        clearInterval(_this.auto_pid) // stop auto orbit
+        _this.auto_pid = null;
+    }
+    
+    _this.kill = function() {
+        _this.stop();
+        $(this.elem_id).addClass("hide");
+    }
+    
+    _this.start = function() {
+        _this.auto_pid = setInterval(_this.refresh, _this.rate); // start the automatic orbits again
+        _this.init_moon = $(home_moon_id).get(0); // get moon position
+    }
+    
+    _this.initialize = function(id, mx, my) {
+        if ( $('#home_effect #home_rover' + id).length == 0 ) { // If element doesnt exist, make it and give an initial position
+            $('#home_effect').html( $('#home_effect').html() +  // create element
+                '<div id="home_rover' + id + '" class="home_rover">' + 
+                    //'<img src="img/rover' + id%nelem + '.png" />' +
+                '</div>');
+             rover_img = $('#rover'+ id%nelem +'_img');
+             rover_img_clone = rover_img.clone(true);
+             rover_img_clone.removeAttr('id').removeAttr('style');
+             $(rover_img_clone).appendTo('#home_rover'+id);
+             
+            _this.elem_id = 'div#home_effect div.home_rover#home_rover' + id; // get element id
+            o = $(home_moon_id).get(0);
+            var center_y = o.offsetTop + o.offsetHeight / 2, // get orbit params
+                center_x = o.offsetLeft + o.offsetWidth / 2;
+            
+            _this.distancex = center_x - mx; // set amplitudes for the orbit
+            _this.distancey = center_y - my;
+            
+            var rad = Math.sqrt( _this.distancex * _this.distancex + _this.distancey * _this.distancey );
+            _this.speed = _this.speed / Math.sqrt( rad ); // get speed from radius
+            $(_this.elem_id).css({
+                'top' : my,
+                'left' : mx,
+                'z-index': 85
+            });
+        } else { // that element id is already being used
+            console.log("Error : " + id + "'s element " + '#home_effect #home_rover' + id + " already exists")
+        }
+    }
+    
+    _this.refresh = function() {
+        
+        var o = $(home_moon_id).get(0);
+        var m = $(_this.elem_id).get(0);
+        var t = o.offsetTop + o.offsetHeight / 2 - m.offsetHeight / 2 - 
+                (_this.distancey * Math.cos(_this.angle * Math.PI/180.0));
+                
+        var l = o.offsetLeft + o.offsetWidth / 2 - m.offsetWidth / 2 -
+                (_this.distancex * Math.cos(_this.angle * Math.PI/180.0));
+        
+        _this.angle = (_this.angle + (_this.speed * (_this.rate/1000))) % 360;
+        if (_this.angle > 180) {
+            $(_this.elem_id).css({
+                'top' : t,
+                'left' : l,
+                'z-index' : 95
+            });
+        } else {
+            $(_this.elem_id).css({
+                'top' : t,
+                'left' : l,
+                'z-index': 85
+            });
+        }
+    }
+}
+
+function moon_init() {
+    orbits.push(new Orbit())
+    orbits[orbits.length - 1].initialize(orbits.length - 1, 400, 400);
+    orbits[orbits.length - 1].start()
+}
+
+var cumulativeOffset = function(element) {
+    var top = 0, left = 0;
+    do {
+        top += element.offsetTop  || 0;
+        left += element.offsetLeft || 0;
+        element = element.offsetParent;
+    } while(element);
+
+    return {
+        top: top,
+        left: left
+    };
+};
+
+function link_moon_clicks() {
+	$('#container_moon').bind('click', function(e) {
+	    if( $('.in').get()[0].id != "container_moon" ||
+			( ! e.clientX ) || ( ! e.clientY ) ) {
+	        return;
+	    }
+	    
+	    var mx = e.clientX, 
+	        my = e.clientY,
+	        maxx = $(window).width(), 
+	        maxy = $(window).height(),
+	        moonimg = $(home_moon_id + " img"),
+	        moon_box = { 'x' : moonimg.position().left + moonimg.width() / 2,
+	                     'y' : moonimg.position().top + moonimg.height() / 2,
+	                     'rad' : moonimg.height() * 0.4
+	                    };
+	    var clickable_elems = $("div.logo_set div.logo_single img");
+	    $.merge( clickable_elems, $("#navigation_bottom") );
+	    $.merge( clickable_elems, $("#click_help_text") );
+	    var flag_do_click = null;
+	    if ( my > maxy - 60 ) // for navbar
+	        return;
+		clickable_elems.each( function(i, v) {
+			var e = clickable_elems.eq(i),
+				o = e.offset(),
+				box = { 'top' : o.top,
+						'left' : o.left,
+						'bottom' : o.top + e.height(),
+						'right' : o.left + e.width()
+					   };
+			//console.log(mx + ", " + my + "  in  " + JSON.stringify(box, null, 4))
+			if( ( mx > box.left && mx < box.right ) && 
+				( my > box.top && my < box.bottom ) ) {
+				//console.log( "INSIDE" );
+				flag_do_click = e;
+			}
+		} );
+		if( flag_do_click ) {
+			flag_do_click.click();
+			return;
+		}
+	    var dx = mx - moon_box.x,
+	        dy = my - moon_box.y,
+	        r = Math.sqrt( dx * dx + dy * dy),
+	        cost = dx / r,
+	        sint = dy / r;
+	    if ( r < moon_box.rad  ) { // for size of moon
+	        mx = moon_box.rad * cost + moon_box.x;
+	        my = moon_box.rad * sint + moon_box.y;
+	    }
+	    //console.log(mx + "  " + my + " r=" + r + " / " + moon_box.rad)
+	    orbits.push(new Orbit())
+	    orbits[orbits.length - 1].initialize(orbits.length - 1, mx, my);
+	    orbits[orbits.length - 1].start()
+	    
+	    if ( orbits.length > 200 ) {
+	        orbits[orbits.length - 199].kill()
+	    }
+	});
+}
+
+function killall() {
+    for(var i=0; i <= orbits.length; i++)
+		orbits[i].kill()
+}
+
