@@ -1,24 +1,27 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+
 <html>
 <head>
-	<link rel="shortcut icon" href="img/favicon.ico" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/navbar.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/moon.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/image_links.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/jquery.jscrollpane.css" type="text/css" media="all">
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/moon.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/image_links.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/jquery.jscrollpane.css' %}" type="text/css" media="all">
 
-    <title>Google Lunar Challenge</title>
+    <title>Trained for Space powered by Team Indus and organized by Shaastra</title>
 
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="js/TweenLite.min.js"></script>
-    <script type="text/javascript" src="js/CSSPlugin.min.js"></script>
-    <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/TweenLite.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/CSSPlugin.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
     
-    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="js/mwheelIntent.js"></script>
-    <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-    <script type="text/javascript" src="js/moon.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mousewheel.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/mwheelIntent.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.jscrollpane.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-bPopup.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/moon.js' %}"></script>
  <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,6 +30,10 @@
   ga('create', 'UA-42581770-1', 'shaastra.org');
   ga('send', 'pageview');
 </script>
+    
+    <img src="{% static 'img/rovers/rover0.png' %}" style="display:none;" id="rover0_img">
+    <img src="{% static 'img/rovers/rover1.png' %}" style="display:none;" id="rover1_img">
+    <img src="{% static 'img/rovers/rover2.png' %}" style="display:none;" id="rover2_img">
 </head>
 
 <body>
@@ -39,24 +46,24 @@
             <div class=" span6 logo_group">
                 <div class="pull-left logo_single" >
                     <a href="http://shaastra.org" class="pull-left shaastra_logo"> 
-                        <img class="pull-left" src="img/shaastra_small.png" /> 
+                        <img class="pull-left" src="{% static 'img/shaastra_small.png' %}" /> 
                     </a>
                 </div>
                 <div class="pull-left logo_single" >
                     <a href="http://www.iitm.ac.in" class="pull-left iitm_logo"> 
-                        <img class="pull-left" src="img/iitm_logo_white.png" /> 
+                        <img class="pull-left" src="{% static 'img/iitm_logo_white.png' %}" /> 
                     </a>
                 </div>
             </div>
             <div class="span6 logo_group">
                 <div class="pull-right logo_single" >
                     <a href="http://www.googlelunarxprize.org/" class="pull-right glxp_logo"> 
-                        <img class="pull-right" src="img/glxp_logo_white.png" />
+                        <img class="pull-right" src="{% static 'img/glxp_logo_white.png' %}" />
                     </a>
                 </div>
                 <div class="pull-right logo_single" >
                     <a href="#" class="pull-right indus_logo" id="team_indus_menu" onclick="javascript:show_page(this.id)">
-                        <img class="pull-right" src="img/team_indus_small.png" />
+                        <img class="pull-right" src="{% static 'img/team_indus_small.png' %}" />
                     </a>
                 </div>
             </div>
@@ -67,7 +74,7 @@
         <div class="row-fluid container_page slide-right" id="event_format_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/event_format.png" width="200px" height="200px" />
+                    <img src="{% static 'img/event_format.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -103,7 +110,7 @@
         <div class="row-fluid container_page slide-left" id="prize_money_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/medal.png" width="250px" height="250px" />
+                    <img src="{% static 'img/medal.png' %}" width="250px" height="250px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -123,7 +130,7 @@
         <div class="row-fluid container_page slide-right" id="faq_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/faq.png" width="200px" height="200px" />
+                    <img src="{% static 'img/faq.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -142,7 +149,7 @@
         <div class="row-fluid container_page slide-left" id="contact_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/contact.png" width="200px" height="200px" />
+                    <img src="{% static 'img/contact.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -157,7 +164,7 @@
         <div class="row-fluid container_page slide-right" id="problem_statement_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/problem_statement.png" width="200px" height="200px" />
+                    <img src="{% static 'img/problem_statement.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -173,7 +180,7 @@
         <div class="row-fluid container_page slide-left" id="glc_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/glc.png" width="200px" height="200px" />
+                    <img src="{% static 'img/glc.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -192,7 +199,7 @@
         <div class="row-fluid container_page slide-right" id="glx_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/glx.png" width="200px" height="200px" />
+                    <img src="{% static 'img/glx.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -221,7 +228,7 @@
         <div class="row-fluid container_page slide-left" id="team_indus_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/team_indus.png" width="200px" height="200px" />
+                    <img src="{% static 'img/team_indus.png' %}" width="200px" height="200px" />
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -261,7 +268,7 @@
         <div class="row-fluid container_page slide-left" id="mission_content">
             <div class="offset1 span3" id="left_content">
                 <center>
-                    <img src="img/mission.png">
+                    <img src="{% static 'img/mission.png' %}">
                 </center>
             </div>
             <div class="span6 white scroll-pane" id="right_content">
@@ -323,7 +330,7 @@
 						<a href="#" onclick="show_page('mission_menu')">
 							<center>
 								<div class="image_link">
-									<img src="img/mission.png">
+									<img src="{% static 'img/mission.png' %}">
 									<div class="mask">
 										<h2>Introduction</h2>
 										<p>What is a mission if it doesn't awaken your mind, drive your body, free your creativity and capture your imagination. Come discover a mission unlike any</p>
@@ -336,7 +343,7 @@
                         <a href="#" onclick="show_page('glc_menu')">
                             <center>
                                 <div class="image_link">
-									<img src="img/glc.png">
+									<img src="{% static 'img/glc.png' %}">
 									<div class="mask">
 										<h2>Google Lunar Challenge</h2>
 										<p>An opportunity like none other. Do what you do best - Create, Innovate, Deliver.</p>
@@ -349,7 +356,7 @@
                         <a href="#" onclick="show_page('team_indus_menu')">
                             <center>
                                 <div class="image_link">
-									<img src="img/team_indus_large.png">
+									<img src="{% static 'img/team_indus_large.png' %}">
 									<div class="mask">
 										<h2>Team Indus</h2>
 										<p>Our very own representatives, in this theatre of tech-gladiators</p>
@@ -362,7 +369,7 @@
 						<a href="#" onclick="show_page('glx_menu')">
                             <center>
                                 <div class="image_link">
-									<img src="img/glx.png">
+									<img src="{% static 'img/glx.png' %}">
 									<div class="mask">
 										<h2>Google Lunar XPrize</h2>
 										<p>21st century's race to the moon.</p>
@@ -374,15 +381,31 @@
                 </div>
             </div>
         </div>
+        {% if request.user.is_authenticated %}
+        <!-- <div class="row-fluid container_page slide-right" id="user_details_content">
+            <div class="offset1 span3" id="left_content">
+                <center>
+                </center>
+            </div>
+            <div class="span6 white scroll-pane" id="right_content">
+                <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
+                <h3>Team Details</h3>
+                <table class="table-bordered">
+                    <t>
+                </table>
+            </div>
+        </div> -->
+        {% endif %}
         <!-- /////////////////////////////////////////////////////////
                                 M O O N
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+        {% block moon_block %}
         <div class="slide-left fade in row-fluid" id="container_moon">
             <div id="home_effect" class="span12">
                 <div id="home_moon" class="home_moon">
 					<!-- <img id="fg_marquee_img" src="img/marquee_fg.png"/>
                     <marquee>Website has been launched !</marquee> -->
-					<img id="home_moon_img" src="img/moon.png"/> 
+					<img id="home_moon_img" src="{% static 'img/moon.png' %}"/> 
 
                    <!--  <a href="#" onclick="show_page('glx_menu')">
                         <div class="label0 labelGLX">
@@ -404,12 +427,29 @@
                 </div>
             </div>
         </div>
+        {% if request.user.is_authenticated %}
+        <div class='home_login_div'>
+            <center>
+                <p style="font-size:17px; color:#ffffff;">Welcome, <strong>{{request.user.username}}</strong> </p>
+                <a class='btn btn-inverse' href="{% url authmn_logout %}">Logout</a>
+            </center>
+        </div>
+        {% else %}
+        <div class='home_login_div'>
+            <center>
+                <a class='btn btn-inverse' href="{% url authmn_login %}">Login</a> <br><br>
+                <a class='btn btn-inverse' href="{% url authmn_register %}">Register</a>
+            </center>
+        </div>
+        {% endif %}
+        {% endblock %}
         <!-- /////////////////////////////////////////////////////////
                                 N A V B A R
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->        
         <div id="navigation_bottom" class="navbar-bottom">
             <div class="navigation">
                 <ul class="menu">
+                {% block nav_links %}
                     <li class="menu-item current-menu-item">
                         <a href="#" id="home_menu" onclick="show_page(this.id)">
                             Home<br /><span class="sub"></span>
@@ -445,6 +485,14 @@
                             Contact<br><span class="sub"></span>
                         </a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <!-- <li class="menu-item">
+                        <a href="#"  id="user_details_menu" onclick="show_page(this.id)">
+                            Details<br><span class="sub"></span>
+                        </a>
+                    </li> -->
+                    {% endif %}
+                {% endblock %}
                 </ul>
             </div>
             <div class="cursor"></div>

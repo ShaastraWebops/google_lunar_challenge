@@ -12,9 +12,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'lunar',                      # Or path to database file if using sqlite3.
-        'USER': 'varun',                      # Not used with sqlite3.
-        'PASSWORD': 'home',                  # Not used with sqlite3.
+        'NAME': 'lunar_db3',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': '1fn1lewuto',                  # Not used with sqlite3.
 		'default-character-set': 'utf8',
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
@@ -69,7 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-	'home/varun/webops/lunar/static',
+	'/home/akshay/google_lunar_challenge/static/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -120,7 +120,7 @@ ROOT_URLCONF = 'lunar.urls'
 WSGI_APPLICATION = 'lunar.wsgi.application'
 
 TEMPLATE_DIRS = (
-	"/home/varun/webops/lunar/templates/"
+	"/home/akshay/google_lunar_challenge/templates/"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

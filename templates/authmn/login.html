@@ -1,16 +1,41 @@
-<html>
+<!--<html>
     <head>
         <b><center>Login<br/></center></b>
     </head>
-    <body>
+    <body>-->
+{% extends "authmn/index.html" %}
+
+{% block moon_block %}
+    <div id="login_section">
         <form action ="" method="POST">
-				{% csrf_token %}
+    			{% csrf_token %}
             <table>
-				{{ form.as_table }}
-			</table>
-			<p> {{ error_message }}
-			{{ value|linebreaks }} 
-            <input type="submit" value="Login">
+    			{{ form.as_table }}
+    		</table>
+    		<p> {{ error_message }} </p>
+    		{{ value|linebreaks }} 
+            <center>
+                <input type="submit" value="Login" class="btn btn-inverse">
+            </center>
         </form>
-    </body>
-</html>
+    </div>
+{% endblock %}
+
+{% block nav_links %}
+    <li class="menu-item">
+        <a id="home_menu" href="{% url authmn_home %}">
+            Home<br /><span class="sub"></span>
+        </a>
+    </li>
+    <li class="menu-item current-menu-item">
+        <a href="#" id="login_menu" href="#">
+            Login<br /><span class="sub"></span>
+        </a>
+    </li>
+{% endblock %}
+    <!--</body>
+</html>-->
+
+
+
+

@@ -1,13 +1,54 @@
-<html> 
+<!--<html> 
     <head>
 	<b>registration</b>
     </head>
-    <body>
+    <body>-->
+{% extends "authmn/index.html" %}
+
+{% block moon_block %}
+    <div id="register_section">
         <form action ="" method="POST">
-            <table>
-				{{ form.as_p }}
-			</table>
-            <input type="submit" value="Register">
+            <table class="table-bordered" cellpadding="15px">
+        		{{ form.as_table }}
+        	</table>
+            <br />
+            <center>
+                <input type="submit" value="Register" class="btn btn-inverse">
+            </center>
         </form>
-    </body>
-</html>
+    </div>
+
+    {% if team_id %}
+        <div id="team_id_alert">
+            <center>
+                    <p style="font-size:20px; color:#ff5725">Your Team ID is <strong>{{team_id}}</strong>. Use this ID for logging in.</p><br>
+                    <a href="{% url authmn_login %}" class="btn btn-inverse">Login</a> &nbsp; &nbsp;
+                    <a href="{% url authmn_home %}" class="btn btn-inverse">Home</a>
+            </center>
+        </div>
+        <script type="text/javascript">
+            $("#team_id_alert").bPopup({
+                    //position: [350, 150],
+                    speed: 450,
+                    easing: 'ease-in',
+                    opacity: 0.95,
+                });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block nav_links %}
+    <li class="menu-item">
+        <a id="home_menu" href="{% url authmn_home %}">
+            Home<br /><span class="sub"></span>
+        </a>
+    </li>
+    <li class="menu-item current-menu-item">
+        <a href="#" id="login_menu" href="#">
+            Register<br /><span class="sub"></span>
+        </a>
+    </li>
+{% endblock %}
+
+    <!-- </body>
+</html> -->

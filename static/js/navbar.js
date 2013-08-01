@@ -128,7 +128,7 @@ function show_page(elem_menu_id) {
         
 		marquee_play();
 		
-		$("#home_login").css({'display':''});
+		$(".home_login_div").css({'display':''});
     } else {
         //elem_content_id = elem_menu_id.substr(0, elem_menu_id.length - "_menu".length) + "_content"
         //$("#" + elem_content_id).removeClass("hide")
@@ -149,7 +149,7 @@ function show_page(elem_menu_id) {
         if (elem_menu_id == "intro_menu") {
 			resize_intro_links();
 		}
-		$("#home_login").css({'display':'none'});
+		$(".home_login_div").css({'display':'none'});
 	}
 }
 

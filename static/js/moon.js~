@@ -62,6 +62,7 @@ function Orbit() {
         if ( $('#home_effect #home_rover' + id).length == 0 ) { // If element doesnt exist, make it and give an initial position
             $('#home_effect').html( $('#home_effect').html() +  // create element
                 '<div id="home_rover' + id + '" class="home_rover">' + 
+<<<<<<< HEAD
                     //'<img src="img/rover' + id%nelem + '.png" />' +
                 '</div>');
              rover_img = $('#rover'+ id%nelem +'_img');
@@ -69,6 +70,10 @@ function Orbit() {
              rover_img_clone.removeAttr('id').removeAttr('style');
              $(rover_img_clone).appendTo('#home_rover'+id);
              
+=======
+                    '<img src="img/rover' + id%nelem + '.png" />' +
+                '</div>');
+>>>>>>> f587a01521eff3d2cbcfe678cbd5178d878c6953
             _this.elem_id = 'div#home_effect div.home_rover#home_rover' + id; // get element id
             o = $(home_moon_id).get(0);
             var center_y = o.offsetTop + o.offsetHeight / 2, // get orbit params
