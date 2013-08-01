@@ -46,12 +46,14 @@ class RegistrationForm(BaseUserForm):
 #			private_key = RECAPTCHA_PRIVATE_KEY,
 #			attrs = {'theme':'clean'}
 #			)
-	team_name       = forms.CharField(max_length=20,help_text='(Your team name will be your username,so please choose a unique team name)' )
-	password       = forms.CharField(max_length=20,widget=forms.PasswordInput)
+#	team_id       = forms.CharField(max_length=20,help_text='(Your team name will be your username,so please choose a unique team name)' )
+	password        = forms.CharField(max_length=20,widget=forms.PasswordInput)
+	password_again  = forms.CharField(max_length=20,widget=forms.PasswordInput,help_text='please enter the same password which you have entered above')
+	want_accommodation = forms.BooleanField(widget=forms.CheckboxInput,required=False)
 	class Meta(BaseUserForm.Meta):
-		fields =('team_name','password','team_leader','team_leader_gender','team_leader_age','team_leader_mobilenumber','team_leader_email',
+		fields =('team_name','password','password_again','team_leader','team_leader_gender','team_leader_age','team_leader_mobilenumber','team_leader_email',
 'member_2','member_3','member_4','member_5','mobilenumber_2','mobilenumber_3','mobilenumber_4','mobilenumber_5',
-'email_2','email_3','email_4','email_5','college_name','branch')#,'captcha')
+'email_2','email_3','email_4','email_5','college_name','want_accommodation')#,'captcha')
 	
 	def clean_team_name(self):
 		if User.objects.filter(username=self.cleaned_data['team_name']):
@@ -64,13 +66,18 @@ class RegistrationForm(BaseUserForm):
 			raise forms.ValidationError('This email_id is already registered,use another')
 		else:
 			return self.cleaned_data['team_leader_email']
+	def clean_password_again(self):
+		if self.cleaned_data['password'] != self.cleaned_data['password_again']:
+			raise forms.ValidationError('please enter the same password you have entered above or else enter different password')
+		else:
+			return self.cleaned_data['password_again']
 class LoginForm(forms.Form):
 	#captcha = ReCaptchaField(
 	#		public_key = RECAPTCHA_PUBLIC_KEY,
 	#		private_key = RECAPTCHA_PRIVATE_KEY,
 	#		attrs = {'theme':'clean'}
 	#		)
-	team_name   =  forms.CharField(max_length=20,help_text='(Enter your team name)')
+	team_id   =  forms.CharField(max_length=20,help_text='(Enter your team id)')
 	password   =  forms.CharField(max_length=20,widget=forms.PasswordInput,help_text='(Enter your password)')
 
 class EditProfileForm(forms.ModelForm):

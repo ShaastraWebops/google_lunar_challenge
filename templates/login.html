@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <b><center>Login<br/></center></b>
+    </head>
+    <body>
+        <form action ="" method="POST">
+				{% csrf_token %}
+            <table>
+				{{ form.as_table }}
+			</table>
+			<p> {{ error_message }}
+			{{ value|linebreaks }} 
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>

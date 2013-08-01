@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
 	user         = models.OneToOneField(User)
+	team_name    = models.CharField(max_length=20,help_text='please choose a unique team name')
 	team_leader  = models.CharField(max_length=20,help_text='(Please enter the name of your Team leader,your team should contain atleast one member and five members at maximum)')
 	member_2     = models.CharField(max_length=20,blank=True,help_text='(If you have more than one member in your team,please fill their names)')
 	member_3     = models.CharField(max_length=20,blank=True,help_text='(If you have more than one member in your team,please fill their names)')
@@ -21,8 +22,9 @@ class UserProfile(models.Model):
 	email_4           = models.EmailField(max_length=40,blank=True)
 	email_5           = models.EmailField(max_length=40,blank=True)
 	college_name = models.CharField(max_length=20,help_text= '(Please enter your college name,all your team members must be from the same college)')
-	branch       = models.CharField(max_length=20,blank=True)
+	team_id = models.CharField(max_length=10)
+	want_accommodation = models.BooleanField()
 	
 	def __unicode__(self):
-		self.User.username
+		self.User.first_name
 	

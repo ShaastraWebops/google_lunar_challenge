@@ -4,15 +4,17 @@ from django.contrib.auth.models import User
 from authmn.models import UserProfile
 from django.template import RequestContext
 from django.shortcuts import *
+#from django.forms.widgets.CheckBoxInput import check_test
 
 def register(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
-			data = form.cleaned_data			
-			newuser = User(username = data['team_name'],first_name = data['team_leader_name'],email = data['team_leader_email'])
+			data = form.cleaned_data		
+			newuser = User(username = data['team_name'],first_name = data['team_leader'],email = data['team_leader_email'])
 			newuser.set_password(data['password']) 
 			newuser.save()
+	#		want_accommodation = check_test(data['want_accommodation'])
 			userprofile = UserProfile(
 			user = newuser,	
 			team_leader = data['team_leader'],		
@@ -33,21 +35,26 @@ def register(request):
 			email_4 = data['email_4'],
 			email_5 = data['email_5'],
 			college_name = data['college_name'],
-			branch = data['branch']			
+            team_id = "lc"+str(newuser.id),
+			want_accommodation = data['want_accommodation']		
 			)
 			userprofile.save()
-			auth_login(request,newuser)	
+			newuser = User.objects.get(username=data['team_name'])
+			newuser.username = userprofile.team_id
+			newuser.save()
+			user = authenticate(username=newuser.username,password=data['password'])
+			auth_login(request,user)	
 			return redirect('authmn.views.home')
 	else:
 		form = RegistrationForm()
-	return render_to_response('authmn/register.html', locals(),context_instance = RequestContext(request))
+	return render_to_response('register.html', locals(),context_instance = RequestContext(request))
 
 def login(request):
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data
-			username = data['team_name']
+			username = data['team_id']
 			password = data['password']
 			user = authenticate(username=username,password=password)
 			if user is not None:
@@ -56,10 +63,10 @@ def login(request):
 			else:
 				error_message="your username and password do not match"
 				form=LoginForm()
-				return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
+				return render_to_response('login.html', locals(), context_instance = RequestContext(request))
 	else:
 		form=LoginForm()
-	return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))	
+	return render_to_response('login.html', locals(), context_instance = RequestContext(request))	
 
 def edit_profile(request):		
 	if request.user.is_authenticated():
@@ -87,7 +94,7 @@ def edit_profile(request):
 			form=EditProfileForm(instance=user_profile)
 	else:
 		return redirect('authmn.views.login')
-	return render_to_response('authmn/editprofile.html', locals(), context_instance = RequestContext(request))
+	return render_to_response('editprofile.html', locals(), context_instance = RequestContext(request))
 def edit_user_profile(request):
 	if request.user.is_authenticated:
 		try:
@@ -105,7 +112,7 @@ def edit_user_profile(request):
 			form=EditUserForm(instance=user)
 	else:
 		return redirect('authmn.views.home')
-	return render_to_response('authmn/edituser.html', locals(), context_instance = RequestContext(request))
+	return render_to_response('edituser.html', locals(), context_instance = RequestContext(request))
 def logout(request):
 	if request.user.is_authenticated():
 		auth_logout(request)
@@ -115,7 +122,8 @@ def logout(request):
 def home(request):
 	user=request.user
 	if user.is_authenticated():
-		return render_to_response('home.html',locals(),context_instance=RequestContext(request))
+		team_id = user.username
+		return render_to_response('index.html',locals(),context_instance=RequestContext(request))
 	else:
 		return redirect('authmn.views.login')
 				
