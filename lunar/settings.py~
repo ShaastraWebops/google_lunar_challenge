@@ -69,7 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-	"home/varun/webops/lunar/static",
+	'home/varun/webops/lunar/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -173,3 +173,4 @@ RECAPTCHA_PUBLIC_KEY = '6LeGDuUSAAAAAK3GziADrTRgo38gyDFKTP5KF582'
 RECAPTCHA_PRIVATE_KEY = '6LeGDuUSAAAAAE_A3poLOW4iQ_WTqN-ogQOXDoNd'
 RECAPTCHA_USE_SSL = True
 AUTH_PROFILE_MODULE="User.UserProfile"
+AUTHENTICATION_BACKENDS='django.contrib.auth.backends.ModelBackend'

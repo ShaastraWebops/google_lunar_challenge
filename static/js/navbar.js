@@ -149,7 +149,6 @@ function show_page(elem_menu_id) {
         if (elem_menu_id == "intro_menu") {
 			resize_intro_links();
 		}
-		
 		$("#home_login").css({'display':'none'});
 	}
 }

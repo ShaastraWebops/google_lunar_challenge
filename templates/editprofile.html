@@ -1,0 +1,15 @@
+<html>
+<title> edit profile </title>
+<body>
+<p><label for="id-user">Team:{{ user }}</label>
+	<input id="id_user" type="hidden"></p>
+<a href="{% url authmn_edit_user_profile %}">change my user profile</a>
+{{ value|linebreaks }}
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="change_my_profile">
+</form>
+<a href="{% url authmn_logout %}">logout</a>
+</body>
+</html>

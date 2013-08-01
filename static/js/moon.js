@@ -68,7 +68,7 @@ function Orbit() {
              rover_img_clone = rover_img.clone(true);
              rover_img_clone.removeAttr('id').removeAttr('style');
              $(rover_img_clone).appendTo('#home_rover'+id);
-             
+
             _this.elem_id = 'div#home_effect div.home_rover#home_rover' + id; // get element id
             o = $(home_moon_id).get(0);
             var center_y = o.offsetTop + o.offsetHeight / 2, // get orbit params
