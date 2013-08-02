@@ -138,9 +138,9 @@ def set_clock_date():
         returns start date, end date and today in seconds.
         these values are used in the countdown timer.
     '''
-    startdate = datetime.datetime(2013,8,1,0,0,1)
-    enddate = datetime.datetime(2013,10,10,23,59,59)
     today = datetime.datetime.now()
+    startdate = datetime.datetime(2013, 7, 1, 0, 0, 1)
+    enddate = datetime.datetime(2013, 9, 12, 23, 59, 59) # 12th Sept Midnight .. i.e. 13th Sept
     
     startdate_sec = time.mktime(startdate.timetuple())
     enddate_sec = time.mktime(enddate.timetuple())

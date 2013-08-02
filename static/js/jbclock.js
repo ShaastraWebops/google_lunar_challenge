@@ -135,10 +135,12 @@ function JBCountDown(settings) {
     clock.start();
 }
 
-function clock_init(len_def) {
+function clock_reset(len_def) {
     var len_sq = 50;
     if (len_def) {
         len_sq = len_def;
+    } else {
+        len_sq = ($('body').height() / 2 / 4) + "px"
     }
     
     $(".clock_wrapper").height(4*len_sq).width(len_sq)
@@ -181,5 +183,5 @@ function start_clock() {
         endDate     : endDate,
         now         : now
     });
-    clock_init(50);
+    clock_reset();
 }

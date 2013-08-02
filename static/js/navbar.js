@@ -36,6 +36,7 @@ function onResize() {
     cur_elem_menu_id = "#" + cur_elem_id.substr(0, cur_elem_id.length - "_content".length) + "_menu"
     $(cur_elem_menu_id).click()
     reset_moon();
+    clock_reset();
 }
 
 function pos(e, s) {
