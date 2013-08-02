@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/moon.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/image_links.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/jquery.jscrollpane.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/jbclock.css' %}" type="text/css" media="all">
 
     <title>Trained for Space powered by Team Indus and organized by Shaastra</title>
 
-    <script type="text/javascript" src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.8.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jbclock.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/TweenLite.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/CSSPlugin.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
@@ -404,6 +406,54 @@
         <div class="slide-left fade in row-fluid" id="container_moon">
             <div id="home_effect" class="span12">
                 <div id="home_moon" class="home_moon">
+                    <div class="clock_wrapper" style="position:absolute; top : 30%; left : 5%;">
+                        <div class="clock">
+                            <!-- Days -->
+                            <div class="clock_days">
+                                <div class="bgLayer">
+                                    <canvas id="canvas_days" width="188" height="188">
+                                    </canvas>
+                                    <div class="text">
+                                        <span class="val"></span><span class="type_days type">&nbsp;Days</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Days -->
+                            <!-- Hours -->
+                            <div class="clock_hours">
+                                <div class="bgLayer">
+                                    <canvas id="canvas_hours" width="188" height="188">
+                                    </canvas>
+                                    <div class="text">
+                                        <span class="val"></span><span class="type_hours type">&nbsp;Hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hours -->
+                            <!-- Minutes -->
+                            <div class="clock_minutes">
+                                <div class="bgLayer">
+                                    <canvas id="canvas_minutes" width="188" height="188">
+                                    </canvas>
+                                    <div class="text">
+                                        <span class="val"></span><span class="type_minutes type">&nbsp;Minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Minutes -->
+                            <!-- Seconds -->
+                            <div class="clock_seconds">
+                                <div class="bgLayer">
+                                    <canvas id="canvas_seconds" width="188" height="188">
+                                    </canvas>
+                                    <div class="text">
+                                        <span class="val"></span><span class="type_seconds type">&nbsp;Seconds</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Seconds -->
+                        </div>
+                    </div><!--/wrapper-->
                     <!-- <img id="fg_marquee_img" src="img/marquee_fg.png"/>
                     <marquee>Website has been launched !</marquee> -->
                     <img id="home_moon_img" src="{% static 'img/moon.png' %}"/> 

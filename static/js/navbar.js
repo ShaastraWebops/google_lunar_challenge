@@ -5,6 +5,7 @@ $(window).bind('load', function() {
     onResize();
     moon_init();
     link_moon_clicks();
+    start_clock();
 });
 
 // Marquee fade function
