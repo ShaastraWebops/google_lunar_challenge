@@ -325,6 +325,7 @@ div .home_login_div {
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
     padding-top: 17px;
+    overflow:auto;
 }
 
 div #login_section {

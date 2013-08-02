@@ -10,7 +10,7 @@ function JBCountDown(settings) {
     glob.total   = Math.floor((glob.endDate - glob.startDate)/86400);
     glob.days    = Math.floor((glob.endDate - glob.now ) / 86400);
     glob.hours   = 24 - Math.floor(((glob.endDate - glob.now) % 86400) / 3600);
-    glob.minutes = 60 - Math.floor((((glob.endDate - glob.now) % 86400) % 3600) / 60) ;
+    glob.minutes = 60 - Math.floor((((glob.endDate - glob.now) % 86400) % 3600) / 60);
     glob.seconds = 60 - Math.floor((glob.endDate - glob.now) % 86400 % 3600 % 60);
     
     if (glob.now >= glob.endDate) {
@@ -160,6 +160,10 @@ function clock_init(len_def) {
 }
 
 function start_clock() {
+    startDate = $('#startDate_value').val();
+    endDate = $('#endDate_value').val();
+    now = $('#now_value').val();
+
     JBCountDown({
         secondsColor : "#ffdc50",
         secondsGlow  : "none",
@@ -173,9 +177,9 @@ function start_clock() {
         daysColor    : "#ff6565",
         daysGlow     : "none",
         
-        startDate   : "1357034400",
-        endDate     : "1386496800",
-        now         : "1375440180"
+        startDate   : startDate,
+        endDate     : endDate,
+        now         : now
     });
     clock_init(50);
 }

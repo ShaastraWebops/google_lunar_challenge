@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from authmn.models import UserProfile
 from django.template import RequestContext
 from django.shortcuts import *
+import datetime, time
 #from django.forms.widgets.CheckBoxInput import check_test
 
 def register(request):
@@ -122,6 +123,9 @@ def logout(request):
     return redirect('authmn.views.login')
     
 def home(request):
+    #start date, end date and today's date in seconds for the clock
+    (startDate, endDate, now) = set_clock_date()
+    
     user=request.user
     if user.is_authenticated():
         user_profile = UserProfile.objects.get(user=user)
@@ -129,3 +133,17 @@ def home(request):
     else:
         return render_to_response('authmn/index.html',locals(),context_instance=RequestContext(request))
     
+def set_clock_date():
+    '''
+        returns start date, end date and today in seconds.
+        these values are used in the countdown timer.
+    '''
+    startdate = datetime.datetime(2013,8,1,0,0,1)
+    enddate = datetime.datetime(2013,10,10,23,59,59)
+    today = datetime.datetime.now()
+    
+    startdate_sec = time.mktime(startdate.timetuple())
+    enddate_sec = time.mktime(enddate.timetuple())
+    today_sec = time.mktime(today.timetuple())
+    
+    return (startdate_sec, enddate_sec, today_sec)

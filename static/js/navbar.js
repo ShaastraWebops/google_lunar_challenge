@@ -130,6 +130,7 @@ function show_page(elem_menu_id) {
 		marquee_play();
 		
 		$(".home_login_div").css({'display':''});
+		$(".clock_wrapper").css({'display':''});
     } else {
         //elem_content_id = elem_menu_id.substr(0, elem_menu_id.length - "_menu".length) + "_content"
         //$("#" + elem_content_id).removeClass("hide")
@@ -151,6 +152,7 @@ function show_page(elem_menu_id) {
 			resize_intro_links();
 		}
 		$(".home_login_div").css({'display':'none'});
+		$(".clock_wrapper").css({'display':'none'});
 	}
 }
 
