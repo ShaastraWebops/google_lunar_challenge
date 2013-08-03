@@ -38,6 +38,7 @@ function JBCountDown(settings) {
             },
             
             hours: function(){
+            /*    
                 var cHr = $("#canvas_hours").get(0);
                 var ctx = cHr.getContext("2d");
                 ctx.clearRect(0, 0, cHr.width, cHr.height);
@@ -52,10 +53,12 @@ function JBCountDown(settings) {
                 ctx.arc(clock_center,clock_center,clock_radius, deg(0), deg(15*glob.hours));
                 ctx.lineWidth = clock_width;
                 ctx.stroke();
+            */
                 $(".clock_hours .val").text(24 - glob.hours);
             },
             
             minutes : function(){
+            /*    
                 var cMin = $("#canvas_minutes").get(0);
                 var ctx = cMin.getContext("2d");
                 ctx.clearRect(0, 0, cMin.width, cMin.height);
@@ -70,9 +73,11 @@ function JBCountDown(settings) {
                 ctx.arc(clock_center,clock_center,clock_radius, deg(0), deg(6*glob.minutes));
                 ctx.lineWidth = clock_width;
                 ctx.stroke();
+            */  
                 $(".clock_minutes .val").text(60 - glob.minutes);
             },
             seconds: function(){
+            /*
                 var cSec = $("#canvas_seconds").get(0);
                 var ctx = cSec.getContext("2d");
                 ctx.clearRect(0, 0, cSec.width, cSec.height);
@@ -87,8 +92,8 @@ function JBCountDown(settings) {
                 ctx.arc(clock_center,clock_center,clock_radius, deg(0), deg(6*glob.seconds));
                 ctx.lineWidth = clock_width;
                 ctx.stroke();
-        
                 $(".clock_seconds .val").text(60 - glob.seconds);
+            */
             }
         },
        
@@ -140,7 +145,7 @@ function clock_reset(len_def) {
     if (len_def) {
         len_sq = len_def;
     } else {
-        len_sq = ($('body').height() / 2 / 4) + "px"
+        len_sq = ($('body').height() / 2 / 4)
     }
     
     $(".clock_wrapper").height(4*len_sq).width(len_sq)
@@ -155,8 +160,15 @@ function clock_reset(len_def) {
         'font-size' : (len_sq / 100) + 'em',
     });
     
-    $(".bgLayer .text").css( {
+    $(".clock_days .bgLayer .text").css( {
         'top' : ((len_sq - $(".bgLayer .text").height()) / 2) + 'px',
+    });
+    var temp_midx = 0;//( $(".clock").width() + $(".clock .text").width() ) / 2
+    $(".clock_hours").css( {
+        'left' : ( temp_midx - $(".clock_hours").width() ) + 'px',
+    });
+    $(".clock_minutes").css( {
+        'left' : ( $(".clock_hours").offset().right ) + 'px',
     });
     
 }

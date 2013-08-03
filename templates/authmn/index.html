@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/jquery.jscrollpane.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/jbclock.css' %}" type="text/css" media="all">
 
-    <title>Trained for Space powered by Team Indus and organized by Shaastra</title>
+    <title>Trained for Space, powered by Team Indus, organized by Shaastra</title>
 
     <script type="text/javascript" src="{% static 'js/jquery-1.8.0.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jbclock.js' %}"></script>
@@ -410,19 +410,6 @@
                     <!-- <img id="fg_marquee_img" src="img/marquee_fg.png"/>
                     <marquee>Website has been launched !</marquee> -->
                     <img id="home_moon_img" src="{% static 'img/moon.png' %}"/> 
-
-                   <!--  <a href="#" onclick="show_page('glx_menu')">
-                        <div class="label0 labelGLX">
-                        </div>
-                    </a>
-                    <a href="#" onclick="show_page('glc_menu')">
-                        <div class="label120 labelGLC">
-                        </div>
-                    </a>
-                    <a href="#" onclick="show_page('team_indus_menu')">
-                        <div class="label240 labelTI">
-                        </div>
-                    </a> -->
                 </div>
                 <div class="span12 click_help_text white">
                     <center>
@@ -431,7 +418,7 @@
                 </div>
             </div>
         </div>
-        <div class="clock_wrapper" style="position:absolute; top : 30%; left : 5%;">
+        <div class="clock_wrapper" style="position:absolute; top : 40%; left : 75%;">
             
             <input type="hidden" value="{{startDate}}" id="startDate_value">
             <input type="hidden" value="{{endDate}}" id="endDate_value">
@@ -441,8 +428,7 @@
                 <!-- Days -->
                 <div class="clock_days">
                     <div class="bgLayer">
-                        <canvas id="canvas_days" width="188" height="188">
-                        </canvas>
+                        <canvas id="canvas_days" width="188" height="188"> </canvas>
                         <div class="text">
                             <span class="val"></span><span class="type_days type">&nbsp;Days</span>
                         </div>
@@ -452,8 +438,7 @@
                 <!-- Hours -->
                 <div class="clock_hours">
                     <div class="bgLayer">
-                        <canvas id="canvas_hours" width="188" height="188">
-                        </canvas>
+                        <!--<canvas id="canvas_hours" width="188" height="188"> </canvas> -->
                         <div class="text">
                             <span class="val"></span><span class="type_hours type">&nbsp;Hours</span>
                         </div>
@@ -463,15 +448,14 @@
                 <!-- Minutes -->
                 <div class="clock_minutes">
                     <div class="bgLayer">
-                        <canvas id="canvas_minutes" width="188" height="188">
-                        </canvas>
+                        <!--<canvas id="canvas_minutes" width="188" height="188"> </canvas>-->
                         <div class="text">
                             <span class="val"></span><span class="type_minutes type">&nbsp;Minutes</span>
                         </div>
                     </div>
                 </div>
-                <!-- Minutes -->
-                <!-- Seconds -->
+                <!-- /Minutes -->
+                <!-- Seconds --
                 <div class="clock_seconds">
                     <div class="bgLayer">
                         <canvas id="canvas_seconds" width="188" height="188">
@@ -481,7 +465,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Seconds -->
+                !-- /Seconds -->
             </div>
         </div><!--/wrapper-->
         {% if request.user.is_authenticated %}

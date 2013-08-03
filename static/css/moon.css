@@ -317,7 +317,7 @@ div .home_login_div {
     width:10%;
     z-index: 99;
     position: absolute;
-    left: 75%;
+    left: 10%;
     top: 40%;
     background-color: rgba(0, 0, 0, 0.5);
     border: medium double rgb(102, 102, 102);

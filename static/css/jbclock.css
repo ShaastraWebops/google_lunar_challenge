@@ -8,12 +8,18 @@
     height : 10%;
     z-index : 99999;
 }
-
-.clock > div {
-    float : left;
-    z-index : 99999;
+.clock_days {
+    display : block;
+    position : relative;
 }
-
+.clock_minutes {
+    position : relative;
+    display : block;
+}
+.clock_hours {
+    position : relative;
+    display : block;
+}
 .bgLayer { 
     position : relative; 
     z-index : 99999;

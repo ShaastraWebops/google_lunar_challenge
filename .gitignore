@@ -1,0 +1,5 @@
+*.pyc
+*.py~
+local_settings.py
+.htaccess
+cgi-bin
