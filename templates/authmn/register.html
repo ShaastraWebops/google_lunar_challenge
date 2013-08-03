@@ -8,7 +8,8 @@
 {% block moon_block %}
     <div id="register_section">
         <form action ="" method="POST">
-            <table class="table" cellpadding="15px">
+            {% csrf_token %}
+            <table id="registration_table">
                 {{ form.as_table }}
             </table>
             <br />
@@ -17,7 +18,18 @@
             </center>
         </form>
     </div>
+    <style type="text/css">
+        table ,tr, td , th {
+            border-top:2px solid white; 
+            padding:10px; 
+            position:relative;
+            top:-5px;
+        }
+    </style>
 
+    <script type="text/javascript">
+        $("#team_indus_menu").removeAttr("onclick");
+    </script>
     {% if team_id %}
         <div id="team_id_alert">
             <center>
@@ -26,6 +38,7 @@
                     <a href="{% url authmn_home %}" class="btn btn-inverse">Home</a>
             </center>
         </div>
+        
         <script type="text/javascript">
             $("#team_id_alert").bPopup({
                     //position: [350, 150],

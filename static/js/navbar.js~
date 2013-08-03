@@ -36,6 +36,7 @@ function onResize() {
     cur_elem_menu_id = "#" + cur_elem_id.substr(0, cur_elem_id.length - "_content".length) + "_menu"
     $(cur_elem_menu_id).click()
     reset_moon();
+    clock_reset();
 }
 
 function pos(e, s) {
@@ -129,7 +130,8 @@ function show_page(elem_menu_id) {
         
 		marquee_play();
 		
-		$(".home_login_div .clock_wrapper").css({'display':''});
+		$(".home_login_div").css({'display':''});
+		$(".clock_wrapper").css({'display':''});
     } else {
         //elem_content_id = elem_menu_id.substr(0, elem_menu_id.length - "_menu".length) + "_content"
         //$("#" + elem_content_id).removeClass("hide")
@@ -154,6 +156,8 @@ function show_page(elem_menu_id) {
 		$(".clock_wrapper").css({'display':'none'});
 	}
 }
+
+var RunCallbackFunction = function() { }; //reference for loading the callback function, when window.load() is used
 
 function resize_intro_links() {
 /*
