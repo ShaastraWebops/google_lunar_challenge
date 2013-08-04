@@ -61,5 +61,5 @@
 }
 
 .type_seconds {
-    color : #ffffff;/*#ffdc50;*/
+    color : #ffdc50;
 }

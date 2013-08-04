@@ -319,11 +319,11 @@ div .home_login_div {
     position: absolute;
     left: 10%;
     top: 40%;
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0, 0, 0, 0.5);
     border: medium double rgb(102, 102, 102);
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;*/
     padding-top: 17px;
     overflow:auto;
 }
