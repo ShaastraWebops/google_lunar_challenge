@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
 	user         = models.OneToOneField(User)
 	team_name    = models.CharField(max_length=20,help_text='please choose a unique team name')
+	college_name = models.CharField(max_length=20,help_text= '(Please enter your college name,all your team members must be from the same college)')
 	
 	team_leader  = models.CharField(max_length=20,help_text='(Please enter the name of your Team leader,your team should contain atleast one member and five members at maximum)')
 	team_leader_mobilenumber = models.CharField(max_length=12,help_text = '(Please enter your team Mobilenumber)')
@@ -25,11 +26,10 @@ class UserProfile(models.Model):
 	mobilenumber_5           = models.CharField(max_length=12,blank=True)
 	email_5           = models.EmailField(max_length=40,blank=True)
 	
-	college_name = models.CharField(max_length=20,help_text= '(Please enter your college name,all your team members must be from the same college)')
 	team_id = models.CharField(max_length=10)
-	want_accommodation = models.BooleanField()
-	accomodation_for_boys = models.IntegerField(help_text='Number of male members in your team')
-	accomodation_for_girls = models.IntegerField(help_text='Number of female members in your team')
+	want_accommodation = models.BooleanField(default=False)
+	accomodation_for_boys = models.IntegerField(default=0, help_text='Number of male members in your team')
+	accomodation_for_girls = models.IntegerField(default=0, help_text='Number of female members in your team')
 	
 	
 	def __unicode__(self):
