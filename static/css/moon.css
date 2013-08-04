@@ -330,36 +330,18 @@ div .home_login_div {
 
 div #login_section {
     position:absolute;
-    top:30%;
-    left:40%;
-    height: 30%;
+    top:90px;
+    left:24%;
+    height: 10%;
     width: 23%;
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0, 0, 0, 0.5);
     border: medium double rgb(102, 102, 102);
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    color:#ffffff;
-}
-
-div #register_section {
-    position:absolute;
-    top:20%;
-    left:22%;
-    height: 63%;
-    width: 50%;
-    overflow:auto;
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: medium double rgb(102, 102, 102);
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;*/
     color:#ffffff;
 }
 

@@ -5,19 +5,29 @@
     <body>-->
 {% extends "authmn/index.html" %}
 
-{% block moon_block %}
-    <div id="register_section">
-        <form action ="" method="POST">
-            {% csrf_token %}
-            <table id="registration_table">
-                {{ form.as_table }}
-            </table>
-            <br />
+{% block login_content_block %}
+    <div class="row-fluid container_page slide-right" id="register_content">
+        <div class="offset1 span3" id="left_content">
             <center>
-                <input type="submit" value="Register" class="btn btn-inverse">
             </center>
-        </form>
+        </div>
+        <div class="offset2 span8 white scroll-pane" id="right_content">
+            <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
+            <br><br>
+            <h3> Register </h3>
+            <form action ="" method="POST">
+                {% csrf_token %}
+                <table id="registration_table">
+                    {{ form.as_table }}
+                </table>
+                <br />
+                <center>
+                    <input type="submit" value="Register" class="btn btn-inverse">
+                </center>
+            </form>
+        </div>
     </div>
+
     <style type="text/css">
         table ,tr, td , th {
             border-top:2px solid white; 
@@ -28,7 +38,13 @@
     </style>
 
     <script type="text/javascript">
-        $("#team_indus_menu").removeAttr("onclick");
+        $(document).ready(function(){
+            $("#register_menu").click();
+            $(".close").bind('click', function(e){
+                url = $('#home_menu').attr('href');
+                window.open(url,'_self');
+            });
+        });
     </script>
     {% if team_id %}
         <div id="team_id_alert">
@@ -50,14 +66,16 @@
     {% endif %}
 {% endblock %}
 
-{% block nav_links %}
+{% block home_menu_block %}
     <li class="menu-item">
         <a id="home_menu" href="{% url authmn_home %}">
             Home<br /><span class="sub"></span>
         </a>
     </li>
+{% endblock %}
+{% block login_menu_block %}
     <li class="menu-item current-menu-item">
-        <a href="#" id="login_menu" href="#">
+        <a href="#" id="register_menu" onclick="show_page(this.id)">
             Register<br /><span class="sub"></span>
         </a>
     </li>

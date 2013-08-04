@@ -1,18 +1,26 @@
 {% extends "authmn/index.html" %}
 
-{% block moon_block %}
-    <div id="login_section">
-        <form action ="" method="POST">
-    			{% csrf_token %}
-            <table>
-    			{{ form.as_table }}
-    		</table>
-    		<p> {{ error_message }} </p>
-    		{{ value|linebreaks }} 
-            <center>
-                <input type="submit" value="Login" class="btn btn-inverse">
-            </center>
-        </form>
+{% block login_content_block %}
+    <div class="row-fluid container_page slide-right" id="login_content">
+        <div class="offset1 span3" id="left_content">
+        </div>
+        <div class="span6 white scroll-pane" id="right_content">
+            <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
+            <br><br>
+            <h3> Login </h3>
+            <div id="login_section">
+                <form action ="" method="POST">
+                        {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <p> {{ error_message }} </p>
+                    {{ value|linebreaks }} 
+
+                    <input type="submit" value="Login" class="btn btn-inverse" style="position:relative; left:80%">
+                </form>
+            </div>
+        </div>
     </div>
 
     <style type="text/css">
@@ -25,18 +33,26 @@
     </style>
 
     <script type="text/javascript">
-        $("#team_indus_menu").removeAttr("onclick");
+        $(document).ready(function(){
+            $("#login_menu").click();
+            $(".close").bind('click', function(e){
+                url = $('#home_menu').attr('href');
+                window.open(url,'_self');
+            });
+        });
     </script>
 {% endblock %}
 
-{% block nav_links %}
+{% block home_menu_block %}
     <li class="menu-item">
         <a id="home_menu" href="{% url authmn_home %}">
             Home<br /><span class="sub"></span>
         </a>
     </li>
+{% endblock %}
+{% block login_menu_block %}
     <li class="menu-item current-menu-item">
-        <a href="#" id="login_menu" href="#">
+        <a href="#" id="login_menu" onclick="show_page(this.id)">
             Login<br /><span class="sub"></span>
         </a>
     </li>

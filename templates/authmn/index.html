@@ -384,6 +384,8 @@
                 </div>
             </div>
         </div>
+        {% block login_content_block %}
+        {% endblock %}
         {% if request.user.is_authenticated %}
         <!-- <div class="row-fluid container_page slide-right" id="user_details_content">
             <div class="offset1 span3" id="left_content">
@@ -402,7 +404,6 @@
         <!-- /////////////////////////////////////////////////////////
                                 M O O N
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-        {% block moon_block %}
         <div class="slide-left fade in row-fluid" id="container_moon">
             <div id="home_effect" class="span12">
                 <div id="home_moon" class="home_moon">
@@ -483,19 +484,19 @@
             </center>
         </div>
         {% endif %}
-        {% endblock %}
         <!-- /////////////////////////////////////////////////////////
                                 N A V B A R
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->        
         <div id="navigation_bottom" class="navbar-bottom">
             <div class="navigation">
                 <ul class="menu">
-                {% block nav_links %}
+                {% block home_menu_block %}
                     <li class="menu-item current-menu-item">
                         <a href="#" id="home_menu" onclick="show_page(this.id)">
                             Home<br /><span class="sub"></span>
                         </a>
                     </li>
+                {% endblock %}
                     <li class="menu-item">
                         <a href="#" id="intro_menu" onclick="show_page(this.id)">
                             Introduction<br /><span class="sub"></span>
@@ -526,6 +527,8 @@
                             Contact<br><span class="sub"></span>
                         </a>
                     </li>
+                    {% block login_menu_block %}
+                    {% endblock %}
                     {% if request.user.is_authenticated %}
                     <!-- <li class="menu-item">
                         <a href="#"  id="user_details_menu" onclick="show_page(this.id)">
@@ -533,7 +536,6 @@
                         </a>
                     </li> -->
                     {% endif %}
-                {% endblock %}
                 </ul>
             </div>
             <div class="cursor"></div>
