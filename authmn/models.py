@@ -33,5 +33,5 @@ class UserProfile(models.Model):
 	
 	
 	def __unicode__(self):
-		self.User.first_name
+		return self.user.first_name
 	
