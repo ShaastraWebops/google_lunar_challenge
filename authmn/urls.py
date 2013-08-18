@@ -1,6 +1,10 @@
 from django.conf.urls import patterns, include, url
 from authmn import views
 
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
+
 urlpatterns = patterns('',
 
 	url('^register/$',views.register, name='authmn_register'),
