@@ -69,7 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-	'home/varun/webops/lunar/static',
+	"/home/varun/Downloads/lunar/static/",
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -80,8 +80,10 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+#INTERNAL_IPS = ('127.0.0.1',)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '@gu4f7+fw-)+xr&amp;8a%^r2^qkx7-1&amp;5i_zy9^wvgt*^xwwscw(2'
@@ -110,6 +112,7 @@ MIDDLEWARE_CLASSES = (
    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+   # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -120,7 +123,7 @@ ROOT_URLCONF = 'lunar.urls'
 WSGI_APPLICATION = 'lunar.wsgi.application'
 
 TEMPLATE_DIRS = (
-	"/home/varun/webops/lunar/templates/"
+	"/home/varun/Downloads/lunar/templates/"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -138,7 +141,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-     'django.contrib.admindocs',
+    'django.contrib.admindocs',
+   #  'debug_toolbar',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -169,6 +173,22 @@ LOGGING = {
         },
     }
 }
+#DEBUG_TOOLBAR_PANELS = (
+ #   'debug_toolbar.panels.version.VersionDebugPanel',
+  #  'debug_toolbar.panels.timer.TimerDebugPanel',
+   # 'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+ #   'debug_toolbar.panels.headers.HeaderDebugPanel',
+  #  'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+   # 'debug_toolbar.panels.template.TemplateDebugPanel',
+    #'debug_toolbar.panels.sql.SQLDebugPanel',
+ #   'debug_toolbar.panels.signals.SignalDebugPanel',
+  #  'debug_toolbar.panels.logger.LoggingPanel',
+#)
+#DEBUG_TOOLBAR_CONFIG = {
+#	'INTERCEPT_REDIRECTS' : False,
+ #   'HIDE_DJANGO_SQL' : False,
+  #  'ENABLE_STACKTRACES' : True,
+#}
 RECAPTCHA_PUBLIC_KEY = '6LeGDuUSAAAAAK3GziADrTRgo38gyDFKTP5KF582'
 RECAPTCHA_PRIVATE_KEY = '6LeGDuUSAAAAAE_A3poLOW4iQ_WTqN-ogQOXDoNd'
 RECAPTCHA_USE_SSL = True

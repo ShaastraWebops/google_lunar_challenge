@@ -53,7 +53,7 @@ class RegistrationForm(BaseUserForm):
 	class Meta(BaseUserForm.Meta):
 		fields =('team_name','password','password_again','team_leader','team_leader_gender','team_leader_age','team_leader_mobilenumber','team_leader_email',
 'member_2','member_3','member_4','member_5','mobilenumber_2','mobilenumber_3','mobilenumber_4','mobilenumber_5',
-'email_2','email_3','email_4','email_5','college_name','want_accommodation')#,'captcha')
+'email_2','email_3','email_4','email_5','college_name','want_accommodation','centre_for_first_round')#,'captcha')
 	
 	def clean_team_name(self):
 		if User.objects.filter(username=self.cleaned_data['team_name']):
@@ -103,4 +103,8 @@ class EditUserForm(forms.ModelForm):
 	#		'user_permissions'  : forms.HiddenInput(blank=True)
 			}
 		exclude = ('groups', 'user_permissions','password','first_name','last_name','email')
+
+class FirstRoundCentreForm(forms.Form):
+    centre_for_first_round=forms.ChoiceField(required=True,choices=('iitd','iitm'))
+    
 	

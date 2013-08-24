@@ -17,7 +17,8 @@ def register(request):
 	#		want_accommodation = check_test(data['want_accommodation'])
 			userprofile = UserProfile(
 			user = newuser,	
-			team_leader = data['team_leader'],		
+			team_leader = data['team_leader'],	
+            team_name = data['team_name'],	
 			team_leader_gender = data['team_leader_gender'],
 			team_leader_age = data['team_leader_age'],
 			member_2 = data['member_2'],
@@ -35,8 +36,9 @@ def register(request):
 			email_4 = data['email_4'],
 			email_5 = data['email_5'],
 			college_name = data['college_name'],
-            team_id = "lc"+str(newuser.id),
-			want_accommodation = data['want_accommodation']		
+            team_id = "lc"+str(newuser.id), 
+			want_accommodation = data['want_accommodation'], 
+            centre_for_first_round = data['centre_for_first_round'], 
 			)
 			userprofile.save()
 			newuser = User.objects.get(username=data['team_name'])
@@ -78,7 +80,7 @@ def edit_profile(request):
 			return redirect('authmn.views.login')
 		if user is not None:		
 			try:			
-				user_profile=UserProfile.objects.get(user=user)
+				user_profile=UserProfile.objects.get(user_id=user.id)
 			except:
 # this would happen for admin or users created by admin without putting userprofile,so I'm not caring much about this
 				return HttpResponse('sorry you do not have a user profile')			
@@ -113,6 +115,26 @@ def edit_user_profile(request):
 	else:
 		return redirect('authmn.views.home')
 	return render_to_response('edituser.html', locals(), context_instance = RequestContext(request))
+def lunar_first_round(request):
+    if request.user.is_authenticated:
+        user=request.user
+        try:
+            userprofile=UserProfile.objects.get(user=user)
+        except:
+			user=None
+			auth_logout(request)	
+			return redirect('authmn.views.login')
+        if request.method == 'POST':
+            form=FirstRoundCentreForm(request.POST)
+            if form.is_valid():
+                userprofile.centre_for_first_round = form.cleaned_data['centre_for_first_round']
+                return redirect('authmn.views.home')
+        else:
+            form=FirstRoundCentreForm()
+    else:
+        return redirect('authmn.views.home')    
+    return render_to_response('firstround.html',locals(), context_instance = RequestContext(request))
+                 
 def logout(request):
 	if request.user.is_authenticated():
 		auth_logout(request)

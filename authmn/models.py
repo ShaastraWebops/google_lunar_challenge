@@ -23,8 +23,8 @@ class UserProfile(models.Model):
 	email_5           = models.EmailField(max_length=40,blank=True)
 	college_name = models.CharField(max_length=20,help_text= '(Please enter your college name,all your team members must be from the same college)')
 	team_id = models.CharField(max_length=10)
+	centre_for_first_round = models.CharField(max_length=1,default='A',choices = [('A','IITM'),('B','IITD')],help_text='(please enter your firstround allotment preference)',blank=True )
 	want_accommodation = models.BooleanField()
-	
-	def __unicode__(self):
-		self.User.first_name
+		#def __unicode__(self):
+	#	self.team_name
 	
