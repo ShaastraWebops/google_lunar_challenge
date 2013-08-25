@@ -111,6 +111,6 @@ class EditUserForm(forms.ModelForm):
         exclude = ('groups', 'user_permissions','password','first_name','last_name','email', 'team_id')
 
 class FirstRoundCentreForm(forms.Form):
-    centre_for_first_round=forms.ChoiceField(required=True,choices=('iitd','iitm', 'iitb'))
+    centre_for_first_round=forms.ChoiceField(required=True,choices=('iitd','iitm', 'vjit'))
     
     
