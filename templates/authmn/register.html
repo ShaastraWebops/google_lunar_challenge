@@ -1,0 +1,85 @@
+<!--<html> 
+    <head>
+	<b>registration</b>
+    </head>
+    <body>-->
+{% extends "authmn/index.html" %}
+
+{% block login_content_block %}
+    <div class="row-fluid container_page slide-right" id="register_content">
+        <div class="offset1 span3" id="left_content">
+            <center>
+            </center>
+        </div>
+        <div class="offset2 span8 white scroll-pane" id="right_content">
+            <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
+            <br><br>
+            <h3> Register </h3>
+            <form action ="" method="POST">
+                {% csrf_token %}
+                <table id="registration_table">
+                    {{ form.as_table }}
+                </table>
+                <br />
+                <center>
+                    <input type="submit" value="Register" class="btn btn-inverse">
+                </center>
+            </form>
+        </div>
+    </div>
+
+    <style type="text/css">
+        table ,tr, td , th {
+            border-top:2px solid white; 
+            padding:10px; 
+            position:relative;
+            top:-5px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#register_menu").click();
+            $(".close").bind('click', function(e){
+                url = $('#home_menu').attr('href');
+                window.open(url,'_self');
+            });
+        });
+    </script>
+    {% if team_id %}
+        <div id="team_id_alert">
+            <center>
+                    <p style="font-size:20px; color:#ff5725">Your Team ID is <strong>{{team_id}}</strong>. Use this ID for logging in.</p><br>
+                    <a href="{% url authmn_login %}" class="btn btn-inverse">Login</a> &nbsp; &nbsp;
+                    <a href="{% url authmn_home %}" class="btn btn-inverse">Home</a>
+            </center>
+        </div>
+        
+        <script type="text/javascript">
+            $("#team_id_alert").bPopup({
+                    //position: [350, 150],
+                    speed: 450,
+                    easing: 'ease-in',
+                    opacity: 0.95,
+                });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block home_menu_block %}
+    <li class="menu-item">
+        <a id="home_menu" href="{% url authmn_home %}">
+            Home<br /><span class="sub"></span>
+        </a>
+    </li>
+{% endblock %}
+{% block login_menu_block %}
+    <li class="menu-item current-menu-item">
+        <a href="#" id="register_menu" onclick="show_page(this.id)">
+            Register<br /><span class="sub"></span>
+        </a>
+    </li>
+{% endblock %}
+
+    <!-- </body>
+</html> -->

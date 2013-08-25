@@ -1,0 +1,65 @@
+* {
+    padding : 0;
+    margin : 0;
+}
+
+.clock_wrapper {
+    width : 10%;
+    height : 10%;
+    z-index : 99999;
+}
+.clock_days {
+    display : block;
+    position : relative;
+}
+.clock_minutes {
+    position : relative;
+    display : block;
+}
+.clock_hours {
+    position : relative;
+    display : block;
+}
+.bgLayer { 
+    position : relative; 
+    z-index : 99999;
+}
+
+.clock .bgLayer .text { 
+    position : absolute; 
+    top : 0; 
+    left : 100%;
+    z-index : 99999;
+}
+
+.clock .bgLayer .text .val {
+    font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size : 2em;
+    font-weight : bold;
+    color : #ffffff;
+    text-align : center;
+}
+
+.clock .bgLayer .text .type {
+    font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
+    text-align : center;
+    font-size : 0.8em;
+    font-weight : bold;
+    text-transform : uppercase;
+}
+
+.type_days {
+    color : #ffffff;/*#ff6565;*/
+}
+
+.type_hours {
+    color : #ffffff;/*#378cff;*/
+}
+
+.type_minutes {
+    color : #ffffff;/*#9cdb7d;*/
+}
+
+.type_seconds {
+    color : #ffdc50;
+}

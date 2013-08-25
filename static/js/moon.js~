@@ -143,6 +143,8 @@ function link_moon_clicks() {
 	        return;
 	    }
 	    
+	    //if ($(e.target).attr('class') == 'clock_wrapper'){alert('yes');}
+	    alert($(e.target).attr('id'))
 	    var mx = e.clientX, 
 	        my = e.clientY,
 	        maxx = $(window).width(), 

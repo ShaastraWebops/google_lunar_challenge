@@ -150,7 +150,7 @@ div#navigation_bottom .cursor-top {
     background-color: #dedede;
 }
 
-ul, ol {
+ul.menu, ol.menu {
     list-style-type: none;
     padding: 0;
 }

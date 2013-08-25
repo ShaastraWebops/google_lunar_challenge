@@ -157,6 +157,8 @@ function show_page(elem_menu_id) {
 	}
 }
 
+var RunCallbackFunction = function() { }; //reference for loading the callback function, when window.load() is used
+
 function resize_intro_links() {
 /*
  * 	// Reset the pics
