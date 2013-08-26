@@ -25,10 +25,10 @@ class UserProfile(models.Model):
     email_5           = models.EmailField(max_length=40,blank=True)
     college_name = models.CharField(max_length=20,help_text= '(Please enter your college name,all your team members must be from the same college)')
     team_id = models.CharField(max_length=10)
-    centre_for_first_round = models.CharField(max_length=1,default='A',choices = [('A','IITM'),('B','IITD'),('C','VJTI')],help_text='(please enter your firstround allotment preference)',blank=True )
-    want_accommodation = models.BooleanField()
-    accomodation_for_boys = models.IntegerField(default=0, help_text='Number of male members in your team')
-    accomodation_for_girls = models.IntegerField(default=0, help_text='Number of female members in your team')
+    centre_for_first_round = models.CharField(max_length=1,default='A',choices = [('A','IIT Madras'),('B','IIT Delhi'),('C','VJTI')],help_text='(please enter your firstround allotment preference)',blank=True )
+    want_accommodation = models.BooleanField(default=False)
+#    accomodation_for_boys = models.IntegerField(default=0, help_text='Number of male members in your team')
+#    accomodation_for_girls = models.IntegerField(default=0, help_text='Number of female members in your team')
     
     def __unicode__(self):
         return self.user.first_name

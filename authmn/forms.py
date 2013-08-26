@@ -50,11 +50,11 @@ class RegistrationForm(BaseUserForm):
 
     password        = forms.CharField(max_length=20,widget=forms.PasswordInput)
     password_again  = forms.CharField(max_length=20,widget=forms.PasswordInput,help_text='please enter the same password which you have entered above')
-    want_accommodation = forms.BooleanField(widget=forms.CheckboxInput,required=False)
+#   want_accommodation = forms.BooleanField(widget=forms.CheckboxInput,required=False)
     class Meta(BaseUserForm.Meta):
-        fields =('team_name','password','password_again','team_leader','team_leader_gender','team_leader_age','team_leader_mobilenumber','team_leader_email',
+        fields =('team_name','password','password_again','team_leader','team_leader_age','team_leader_mobilenumber','team_leader_email',
 'member_2','member_3','member_4','member_5','mobilenumber_2','mobilenumber_3','mobilenumber_4','mobilenumber_5',
-'email_2','email_3','email_4','email_5','college_name','want_accommodation','centre_for_first_round')#,'captcha')
+'email_2','email_3','email_4','email_5','college_name')
     
     def clean_team_name(self):
         if User.objects.filter(username=self.cleaned_data['team_name']):
@@ -80,18 +80,18 @@ class LoginForm(forms.Form):
     #       attrs = {'theme':'clean'}
     #       )
     
-    team_id   =  forms.CharField(max_length = 20, widget = forms.TextInput(attrs = {'placeholder': 'Team ID'}), help_text='(Enter your team id)')
-    password   =  forms.CharField(max_length = 20, widget = forms.PasswordInput(attrs = {'placeholder': 'Password'}), help_text='(Enter your password)')
+    team_id   =  forms.CharField(max_length = 20, widget = forms.TextInput(attrs = {'placeholder': 'Team ID'}))#, help_text='(Enter your team id)')
+    password   =  forms.CharField(max_length = 20, widget = forms.PasswordInput(attrs = {'placeholder': 'Password'}))#, help_text='(Enter your password)')
     
 class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model=UserProfile
         widgets = {
-            'user': forms.HiddenInput()
-             }
-    #           fields = ('first_name','last_name','gender','age','mobilenumber','college_name','branch')
-        exclude = ('team_id')
+            'user': forms.HiddenInput(),
+        }
+#           fields = ('first_name','last_name','gender','age','mobilenumber','college_name','branch')
+        exclude = ('team_id', 'want_accommodation', 'center_for_first_round')
     
 class EditUserForm(forms.ModelForm):
 #   first_name=forms.CharField(max_length=20)
@@ -111,6 +111,8 @@ class EditUserForm(forms.ModelForm):
         exclude = ('groups', 'user_permissions','password','first_name','last_name','email', 'team_id')
 
 class FirstRoundCentreForm(forms.Form):
-    centre_for_first_round=forms.ChoiceField(required=True,choices=('iitd','iitm', 'vjit'))
+    centre_for_first_round=forms.ChoiceField(required=True,choices=[('A', 'IIT Madras'), ('B', 'IIT Delhi'), ('C','VJIT')])
+
+    
     
     

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta name="description" content="Lunar Rover Challenge, powered by Team Indus, organized by Shaastra is an event at Shaastra which will help Team INDUS win the Google Lunar XPrize. The LRC's Winner's rover could be a part of team INDUS' mission to the moon as their entry into this world wide competition.">
-    <meta name="keywords" content="shaastra, robotics, iitmadras, google lunar x, team indus, lunar rover challenge">
+    <meta name="keywords" content="shaastra, robotics, iitmadras, google, lunar, x, team, indus, lunar, rover, challenge, iitm, iit">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" type="text/css" media="all">
@@ -412,6 +412,11 @@
             <div class="span6 white scroll-pane" id="right_content">
                 <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
                 <h3>LRC - ROUND 1</h3>
+                {% if not request.user.is_authenticated %}
+                    <p> <b><center><span style="color : #ff5555">Login to select your Center for the first round NOW !</span></center></b> </p>
+                {% else %}
+                    <form method="POST"> <table class="table">{% csrf_token %} {{round_1_form.as_table}} <tr><td colspan="2"><center><input class="btn" type="submit" name="submit" value="    Submit    " /></center></td></tr></table></form>
+                {% endif %}
                 <p>
                     <b><u>Event Format</u> :</b> <br/>
                     <ol>
@@ -451,7 +456,7 @@ communication, strategy and the algorithms that are being implemented on the rob
                 <p>
                     <b><u>Accomodation</u> :</b> <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;The host colleges will not be providing accommodation for the participants in the first round. However suggestions regarding nearby hotels and stay places will be put up for the convenience of the participants.
-                    <br />Contact Details : <a href="mailto:lunarx@shaastra.org">lunarx.shaastra.org</a>
+                    <br />Contact Details : <a href="mailto:lunarx@shaastra.org">lunarx[at]shaastra.org</a>
                     <br /><br />For any queries/clarifications, please feel free to mail at <a href="mailto:lunarx@shaastra.org">lunarx.shaastra.org</a>
 
                 </p>

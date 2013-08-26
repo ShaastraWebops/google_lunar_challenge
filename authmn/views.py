@@ -1,4 +1,4 @@
-from authmn.forms import RegistrationForm,LoginForm,EditProfileForm,EditUserForm
+from authmn.forms import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout 
 from django.contrib.auth.models import User
 from authmn.models import UserProfile
@@ -13,14 +13,15 @@ def register(request):
         if form.is_valid():
             data = form.cleaned_data        
             newuser = User(username = data['team_name'],first_name = data['team_leader'],email = data['team_leader_email'])
-            newuser.set_password(data['password']) 
+            newuser.set_password(data['password'])
+            print ">>>> PASSWD : " , data['password']
             newuser.save()
     #       want_accommodation = check_test(data['want_accommodation'])
             userprofile = UserProfile(
                 user = newuser, 
                 team_leader = data['team_leader'],  
                 team_name = data['team_name'],  
-                team_leader_gender = data['team_leader_gender'],
+#                team_leader_gender = data['team_leader_gender'],
                 team_leader_age = data['team_leader_age'],
                 member_2 = data['member_2'],
                 member_3 = data['member_3'],
@@ -38,15 +39,15 @@ def register(request):
                 email_5 = data['email_5'],
                 college_name = data['college_name'],
                 team_id = "lc"+str(newuser.id), 
-                want_accommodation = data['want_accommodation'], 
-                centre_for_first_round = data['centre_for_first_round'], 
+#                want_accommodation = data['want_accommodation'], 
+#                centre_for_first_round = data['centre_for_first_round'], 
             )
             userprofile.save()
             newuser = User.objects.get(username=data['team_name'])
             newuser.username = userprofile.team_id
             newuser.save()
-            user = authenticate(username = newuser.username,password=data['password'])
-            auth_login(request,user)    
+            user = authenticate(username = newuser.username, password=data['password'])
+            auth_login(request, user)
             return redirect('authmn.views.home')
         else:
             form_errors = form.errors
@@ -63,7 +64,8 @@ def login(request):
             data = form.cleaned_data
             username = data['team_id']
             password = data['password']
-            user = authenticate(username=username,password=password)
+            print " >>>>>>>>>>>>> ", username, "  ", password
+            user = authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request,user)
                 return redirect('authmn.views.home')
@@ -91,7 +93,7 @@ def edit_profile(request):
             # this would happen for admin or users created by admin without putting userprofile,so I'm not caring much about this
                 return HttpResponse('Sorry you do not have a user profile')         
         if request.method == 'POST':
-            form=EditProfileForm(request.POST,instance=user_profile)
+            form = EditProfileForm(request.POST,instance=user_profile)
             if form.is_valid():
                 form.save()
                 return redirect('authmn.views.home')
@@ -124,6 +126,7 @@ def edit_user_profile(request):
     return render_to_response('edituser.html', locals(), context_instance = RequestContext(request))
 
 def lunar_first_round(request):
+    form=FirstRoundCentreForm()
     if request.user.is_authenticated:
         user=request.user
         try:
@@ -137,11 +140,10 @@ def lunar_first_round(request):
             if form.is_valid():
                 userprofile.centre_for_first_round = form.cleaned_data['centre_for_first_round']
                 return redirect('authmn.views.home')
-        else:
-            form=FirstRoundCentreForm()
+    
     else:
-        return redirect('authmn.views.home')    
-    return render_to_response('firstround.html',locals(), context_instance = RequestContext(request))
+        return redirect('authmn.views.home')
+    return render_to_response('firstround.html', locals(), context_instance = RequestContext(request))
                  
 def logout(request):
     if request.user.is_authenticated():
@@ -154,14 +156,34 @@ def home(request):
     #start date, end date and today's date in seconds for the clock
     (startDate, endDate, now) = set_clock_date()
     
-    user=request.user
-    login_form = LoginForm()
-    register_form = RegistrationForm()
-    if user.is_authenticated():
-        user_profile = UserProfile.objects.get(user=user)
-        return render_to_response('authmn/index.html',locals(),context_instance=RequestContext(request))
+    
+    round_1_form=FirstRoundCentreForm()
+
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+        except:
+            user_profile = None
+            user = None
+            auth_logout(request)
+
+        if user_profile:
+            round_1_form.fields['centre_for_first_round'].initial = user_profile.centre_for_first_round # Set centre from user_profile
+        
+            if request.method == 'POST':
+                round_1_form = FirstRoundCentreForm(request.POST)
+                if round_1_form.is_valid():
+                    user_profile.centre_for_first_round = round_1_form.cleaned_data['centre_for_first_round']
+                    print round_1_form.cleaned_data['centre_for_first_round']
+                    user_profile.save()
+                    print user_profile.centre_for_first_round
+                    return redirect('authmn.views.home')
     else:
-        return render_to_response('authmn/index.html',locals(),context_instance=RequestContext(request))
+        user = None
+
+
+    return render_to_response('authmn/index.html',locals(),context_instance=RequestContext(request))
     
 def set_clock_date():
     '''
