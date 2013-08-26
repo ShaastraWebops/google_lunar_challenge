@@ -415,7 +415,7 @@
                 {% if not request.user.is_authenticated %}
                     <p> <b><center><span style="color : #ff5555">Login to select your Center for the first round NOW !</span></center></b> </p>
                 {% else %}
-                    <form method="POST"> <table class="table">{% csrf_token %} {{round_1_form.as_table}} <tr><td colspan="2"><center><input class="btn" type="submit" name="submit" value="    Submit    " /></center></td></tr></table></form>
+                    <form method="POST"> <table class="table">{% csrf_token %} {{round_1_form.as_table}} <tr><td colspan="2"><center><input class="btn btn-inverse" type="submit" name="submit" value="    Submit    " /></center></td></tr></table></form>
                 {% endif %}
                 <p>
                     <b><u>Event Format</u> :</b> <br/>
@@ -437,7 +437,9 @@ communication, strategy and the algorithms that are being implemented on the rob
                         </li>
                         <li>All the presentations have to be mailed in the Shaastra template.The subject of the mail should be LRC_&lt;team_name&gt;_&lt;participating region&gt; <br />
                             ex: LRC_xxyy_iitd, LRC_xxyy_iitm, LRC_xxyy_vjti</li>
+                        
                     </ol>
+                    <center><a href="{% static 'files/ppt_template.pptx' %}" class="btn btn-inverse"> Presentation Template (pptx) </a></center>
                 </p>
 
                 <p>
@@ -456,6 +458,8 @@ communication, strategy and the algorithms that are being implemented on the rob
                 <p>
                     <b><u>Accomodation</u> :</b> <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;The host colleges will not be providing accommodation for the participants in the first round. However suggestions regarding nearby hotels and stay places will be put up for the convenience of the participants.
+                    <br /><a href="{% static 'files/alt_accommodation_iitm.pdf' %}" class="btn btn-inverse"> Alternate Accomodation </a>
+                    <br />
                     <br />Contact Details : <a href="mailto:lunarx@shaastra.org">lunarx[at]shaastra.org</a>
                     <br /><br />For any queries/clarifications, please feel free to mail at <a href="mailto:lunarx@shaastra.org">lunarx.shaastra.org</a>
 
