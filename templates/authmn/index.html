@@ -559,9 +559,9 @@ communication, strategy and the algorithms that are being implemented on the rob
                         <li>
                             The presentations have to be mailed to lunarx@shaastra.org before the deadlines mentioned below :
                             <ul>
-                                <li><i>IIT Delhi</i> : 10th October, 11:59PM</li>
-                                <li><i>IIT Madras</i> : 26th September, 11:59PM</li>
-                                <li><i>VJTI, Mumbai</i> : will be updated soon</li>
+                                <li><i><a href="http://www.iitm.ac.in">IIT Madras</a></i> : 10th October , 11:59 PM</li>
+                                <li><i><a href="http://www.iitd.ac.in">IIT Delhi</a></i> : 26th September , 11:59 PM</li>
+                                <li><i><a href="http://www.vjti.ac.in">VJTI</a></i> : 3rd October 2013 , 11:59 PM</li>
                             </ul>
                         </li>
                         <li>All the presentations have to be mailed in the Shaastra template.The subject of the mail should be LRC_&lt;team_name&gt;_&lt;participating region&gt; <br />
@@ -578,9 +578,9 @@ communication, strategy and the algorithms that are being implemented on the rob
                     This will be a one day event. The dates and timings of the event are:
                     <br />
                     <ul>
-                        <li><i>IIT Madras</i> : 28th September 2013 , 9:30 AM</li>
-                        <li><i>IIT Delhi</i> : 12th October 2013 , 9:30 AM</li>
-                        <li>The date and timing for <i>VJTI</i> region shall be put up soon.</li>
+                        <li><i><a href="http://www.iitm.ac.in">IIT Madras</a></i> : 28th September 2013 , 9:30 AM</li>
+                        <li><i><a href="http://www.iitd.ac.in">IIT Delhi</a></i> : 12th October 2013 , 9:30 AM</li>
+                        <li><i><a href="http://www.vjti.ac.in">VJTI</a></i> : 5th October 2013 , 9:30 AM</li>
                     </ul>
                 </p>
 
@@ -637,7 +637,6 @@ communication, strategy and the algorithms that are being implemented on the rob
                     </center>
                 </div>
             </div>
-        </div>
         <div class="clock_wrapper" style="position:absolute; top : 40%; left : 75%;">
             
             <input type="hidden" value="{{startDate}}" id="startDate_value">
@@ -689,24 +688,49 @@ communication, strategy and the algorithms that are being implemented on the rob
                 !-- /Seconds -->
             </div>
         </div><!--/wrapper-->
+        
+        <div class="home_login_div">
+            
+            <div class="span4 white scroll-pane" id="right_content">
+                    <!--Ever dreamed of having your creation sent to outer space as the world watches in awe? Competing and excelling as an engineer at the national stage? And finally, winning a large prize and the country's respect for your ingenuity and talent?
+                    -->
+                    <!-- We offer you a chance to realize your dreams early in your life. Use your engineering skills to build a rover for the moon. But first some simple steps- -->
+                    
+                    <center><h5>Live Your Dream</h5></center>
+                    <ol>
+                        <li>Register to compete in Lunar Rover Challenge</li>
+                        <li>Dive into the beautiful Problem Statement and let the engineer within you take over.</li>
+                        <li>Attend Round One, show the judges the ingenuity and practicality of your design to get selected to Round 2 <!--amongst the elite group of students from across the country who shall then attend Shaastra '14 at IIT-M--></li>
+                        <li>Have the time of your life as you surge towards the National Finals and the chance to start living your dreams.</li>
+                    </ol>
+                    Convinced? Then what are you waiting for? Join the country's engineers in showing off their worth at a national stage!
+                    
+                    Not convinced? Check out the large prizes we offer you along with the chance to send your bot to the moon. Then check out our problem statement, Team Indus's incredible journey in representing India and finally head back to the convinced zone!"
+                    <br />
+                    <br />
+            </div>
+        </div>
+
         {% if request.user.is_authenticated %}
-        <div class='home_login_div'>
-            <center>
+            <div id="home_login_div_bottom">
+                <center>
                 <p style="font-size:17px; color:#ffffff;">Welcome, <strong>{{request.user.username}}</strong> </p>
-                <div class="btn-group btn-group-vertical">
+                <div class="btn-group ">
                     <a class='btn btn-inverse' href="{% url authmn_logout %}">Logout</a>
                     <a class='btn btn-inverse' href="{% url authmn_edit_profile %}">Edit Profile</a>
                 </div>
-            </center>
-        </div>
+                </center>
+            </div>
         {% else %}
-        <div class='home_login_div'>
-            <center>
-                <a class='btn btn-inverse' href="{% url authmn_login %}">Login</a> <br><br>
-                <a class='btn btn-inverse' href="{% url authmn_register %}">Register</a>
-            </center>
-        </div>
+            <div id="home_login_div_bottom">
+                <center><div class="btn-group ">
+                    <a class='btn btn-inverse' href="{% url authmn_login %}">&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a class='btn btn-inverse' href="{% url authmn_register %}">&nbsp;&nbsp;&nbsp;&nbsp;Register&nbsp;&nbsp;</a>
+                </div>
+                </center>
+            </div>
         {% endif %}
+        </div>
         <!-- /////////////////////////////////////////////////////////
                                 N A V B A R
             \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->        
