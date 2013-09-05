@@ -65,7 +65,11 @@
                           <td>{{u.team_id}}</td>
                           <td>{{u.team_name}}</td>
                           <td>{{u.college_name}}</td>
-                          <td>{{u.centre_for_first_round}}</td>
+                          <td>{% if u.centre_for_first_round == 'A' %}IITM
+                            {%elif u.centre_for_first_round == 'B'%}IITB
+                            {%elif u.centre_for_first_round == 'C'%}VJTI
+                            {%endif%}
+                          </td>
                           <td>{{u.team_leader}}</td>
                           <td>{{u.member_2}}</td>
                           <td>{{u.member_3}}</td>
