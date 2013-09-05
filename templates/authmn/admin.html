@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Admin | LRC</title>
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="all">
+
+    <link href="{% static 'datatables/table_style.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'datatables/TableTools.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'datatables/TableTools_JUI.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/jui_themes/smoothness/jquery-ui-1.10.3.custom.css' %}" rel="stylesheet" media="screen">
+
+    
+    <script type="text/javascript" src="{% static 'js/jquery-1.8.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+    <script src="{% static 'datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'datatables/TableTools.js' %}"></script>
+    <script src="{% static 'datatables/ZeroClipboard.js' %}"></script>
+    <!-- <script src="{% static 'dataTables.bootstrap.js' %}"></script>
+            JQuery UI looks better than bootstrap version-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        
+        <!-- /////////////////////////////////////////////////////////
+                                Datatable
+            \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+        <div class="row-fluid">
+            <div class='span12'></div>
+        </div>
+        <div class="row-fluid">
+            <div class='span12' style='width:200%'>
+                  <table class="table table-bordered table-hover display" id="user_table" width="100%">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Team Name</th>
+                          <th>College</th>
+                          <th>Center1</th>
+                          <th>Leader</th>
+                          <th>Member2</th>
+                          <th>Member3</th>
+                          <th>Member4</th>
+                          <th>Member5</th>
+                          <th>Leader Ph</th>
+                          <th>Member2 Ph</th>
+                          <th>Member3 Ph</th>
+                          <th>Member4 Ph</th>
+                          <th>member5 Ph</th>
+                          <th>Leader Email</th>
+                          <th>Member2 Email</th>
+                          <th>Member3 Email</th>
+                          <th>Member4 Email</th>
+                          <th>Member5 Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for u in users_for_template %}
+                          <tr>
+                          <td>{{u.team_id}}</td>
+                          <td>{{u.team_name}}</td>
+                          <td>{{u.college_name}}</td>
+                          <td>{{u.center_for_first_round}}</td>
+                          <td>{{u.team_leader}}</td>
+                          <td>{{u.member2}}</td>
+                          <td>{{u.member3}}</td>
+                          <td>{{u.member4}}</td>
+                          <td>{{u.member5}}</td>
+                          <td>{{u.team_leader_mobilenumber}}</td>
+                          <td>{{u.mobilenumber_2}}</td>
+                          <td>{{u.mobilenumber_3}}</td>
+                          <td>{{u.mobilenumber_4}}</td>
+                          <td>{{u.mobilenumber_5}}</td>
+                          <td>{{u.team_leader_email}}</td>
+                          <td>{{u.email_2}}</td>
+                          <td>{{u.email_3}}</td>
+                          <td>{{u.emai_4}}</td>
+                          <td>{{u.email_5}}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                
+
+                <script>
+                    var oTable = null;
+                    
+                    function show_table(oTable_element) { // show and initialize datatable
+                        if( oTable != null )    oTable.fnDestroy() // delete last instance of table
+                        
+                        
+                        /* Get all columns with buttons and handle them in Searches and printing
+                        var cols = Array(), cols_table_tools = Array()
+                            th_cols = oTable_element.getElementsByTagName("thead")[0].getElementsByTagName("th")
+                            cols_len = th_cols.length
+                        for ( var col_i = 0; col_i < cols_len; col_i++ ) {
+                            // For universality between tables, get length from the table elements itself.
+                            if( ! $(th_cols[col_i]).hasClass('button_in_table') ) {
+                                cols.push(null);
+                                cols_table_tools.push(col_i)
+                            } else {
+                                cols.push({ "bSearchable": false }); // for Edit/Del & Subtask adding buttons
+                            }
+                        }
+                        */
+                        
+                        oTable = $(oTable_element).dataTable( { // Initializes the table with necessary params
+                            "bJQueryUI" : true, // let jqueryUI handle rendering
+                            "bLengthChange" : false, // Don't show dropdown for number of entries to show on one page
+                            "bFilter" : true, // On the fly Search text-field on top right
+                            "bSort" : true, // Sorting by clicking on table header
+                            "bAutoWidth": true, // Auto fit the table columns
+                            "oLanguage": { "sSearch": "" } , // Remove the Search Label (for the text-field)
+                        //    "aoColumns": cols, // Choose which columns are used in Filter(Search) [[ needed to ignore button columns ]]
+                            "sDom": 'R<C>H<"clear"><"ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"lfr>tT<"ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>',
+                            "oTableTools": {
+                                "sSwfPath": "/static/datatables/swf/copy_csv_xls_pdf.swf",
+                                "aButtons": [ {
+                                        "sExtends": "copy",
+                                        //"mColumns": cols_table_tools
+                                    },
+                                    {
+                                        "sExtends": "csv",
+                                        //"mColumns": cols_table_tools
+                                    },
+                                    {
+                                        "sExtends": "pdf",
+                                        //"mColumns": cols_table_tools
+                                    },//"xls" 
+                                ]
+                            }
+                            /*
+                             * The sDom is a complicated line. It holds what all is there on 
+                             * the table based on some coded html :P
+                             * basics : <"#aaa"> means add a div tag with id 'aaa' in that location
+                             *          <"aaa"> means add a div tag with class 'aaa' in that location
+                             *          R, <C>, H etc are inbuilt things for header, and stuff ... 
+                             *          t - table, f - filter-text-input, 
+                             *          ui-widget-header, etc are classes which jquery uses for the top-bar
+                             * 
+                             * For a better reference, look in the data-tables website for sDom
+                             */
+                        } );
+                        
+                    }
+                    
+                    show_table($("#user_table"))
+                    
+                    
+                </script>
+
+
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class='span12'></div>
+        </div>
+        <div class="row-fluid">
+            <center>
+                <div class="btn-group span6 offset3">
+                    <a class='btn' href="{% url authmn_logout %}">Logout</a>
+                    <a class='btn' href="{% url admin:index %}">Admin</a>
+                </div>
+            </center>
+
+            
+        </div>
+    </div>
+</body>
+</html>

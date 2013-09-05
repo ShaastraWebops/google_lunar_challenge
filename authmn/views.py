@@ -14,7 +14,7 @@ def register(request):
             data = form.cleaned_data        
             newuser = User(username = data['team_name'],first_name = data['team_leader'],email = data['team_leader_email'])
             newuser.set_password(data['password'])
-            print ">>>> PASSWD : " , data['password']
+#            print ">>>> PASSWD : " , data['password']
             newuser.save()
     #       want_accommodation = check_test(data['want_accommodation'])
             userprofile = UserProfile(
@@ -157,9 +157,13 @@ def home(request):
     (startDate, endDate, now) = set_clock_date()
     
     
-    round_1_form=FirstRoundCentreForm()
-
+    round_1_form = FirstRoundCentreForm()
+    
     if request.user.is_authenticated:
+        if request.user.is_superuser: # For admin to see table of users
+            users_for_template = UserProfile.objects.all()
+            return render_to_response('authmn/admin.html', locals(), context_instance=RequestContext(request))
+        
         user = request.user
         try:
             user_profile = UserProfile.objects.get(user=user)
