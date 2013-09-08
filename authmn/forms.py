@@ -54,7 +54,7 @@ class RegistrationForm(BaseUserForm):
     class Meta(BaseUserForm.Meta):
         fields =('team_name','password','password_again','team_leader','team_leader_age','team_leader_mobilenumber','team_leader_email',
 'member_2','member_3','member_4','member_5','mobilenumber_2','mobilenumber_3','mobilenumber_4','mobilenumber_5',
-'email_2','email_3','email_4','email_5','college_name')
+'email_2','email_3','email_4','email_5','college_name', 'centre_for_first_round')
     
     def clean_team_name(self):
         if User.objects.filter(username=self.cleaned_data['team_name']):
@@ -91,7 +91,7 @@ class EditProfileForm(forms.ModelForm):
             'user': forms.HiddenInput(),
         }
 #           fields = ('first_name','last_name','gender','age','mobilenumber','college_name','branch')
-        exclude = ('team_id', 'want_accommodation', 'center_for_first_round')
+        exclude = ('team_id', 'want_accommodation', 'center_for_first_round', 'accomodation_for_boys', 'accomodation_for_girls')
     
 class EditUserForm(forms.ModelForm):
 #   first_name=forms.CharField(max_length=20)

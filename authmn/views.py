@@ -70,17 +70,37 @@ def login(request):
                 auth_login(request,user)
                 return redirect('authmn.views.home')
             else:
-                error_message="your username and password do not match"
-                login_form = LoginForm()
-                return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
+                user_profile_list = UserProfile.objects.filter(team_name=username)
+                if len(user_profile_list) == 1 :
+                    user_profile = user_profile_list[0]
+                    username = user_profile.user.username
+                    user = authenticate(username=username, password=password)
+                    if user is not None:
+                        auth_login(request, user)
+                        return redirect('authmn.views.home')
+                    else :
+                        
+                        error_message="Something unusual happened. We could find your Team Name, but not your Team. Contact the coordinators."
+                        login_form = LoginForm()
+                        return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
+                elif len(user_profile_list) == 0 :
+                    error_message="your username and password do not match"
+                    login_form = LoginForm()
+                    return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
+                else :
+                    error_message = "We cannot find a distinct team with that team name. Please use your team ID"
+                    login_form = LoginForm()
+                    return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
+                    
     else:
         form=LoginForm()
     return render_to_response('authmn/login.html', locals(), context_instance = RequestContext(request))
 
-def edit_profile(request):      
+def edit_profile(request):
+    round_1_form = FirstRoundCentreForm()
     if request.user.is_authenticated():
         try:
-            user=User.objects.get(pk=request.user.id)
+            user = User.objects.get(pk=request.user.id)
         except:
             user=None
             auth_logout(request)    
@@ -89,9 +109,22 @@ def edit_profile(request):
             try:            
                 user_profile=UserProfile.objects.get(user__id=user.id)
 #                user_profile=UserProfile.objects.get(user=user)
+                round_1_form.fields['centre_for_first_round'].initial = user_profile.centre_for_first_round # Set centre from user_profile
             except:
             # this would happen for admin or users created by admin without putting userprofile,so I'm not caring much about this
                 return HttpResponse('Sorry you do not have a user profile')         
+
+            
+            
+        if request.method == 'POST':
+            round_1_form = FirstRoundCentreForm(request.POST)
+            if round_1_form.is_valid():
+                user_profile.centre_for_first_round = round_1_form.cleaned_data['centre_for_first_round']
+                print round_1_form.cleaned_data['centre_for_first_round']
+                user_profile.save()
+                print user_profile.centre_for_first_round
+                return redirect('authmn.views.home')
+            
         if request.method == 'POST':
             form = EditProfileForm(request.POST,instance=user_profile)
             if form.is_valid():
@@ -104,6 +137,7 @@ def edit_profile(request):
             form = EditProfileForm(instance=user_profile)
     else:
         return redirect('authmn.views.login')
+    
     return render_to_response('authmn/editprofile.html', locals(), context_instance = RequestContext(request))
     
 def edit_user_profile(request):
@@ -156,7 +190,6 @@ def home(request):
     #start date, end date and today's date in seconds for the clock
     (startDate, endDate, now) = set_clock_date()
     
-    
     round_1_form = FirstRoundCentreForm()
     
     if request.user.is_authenticated:
@@ -173,8 +206,9 @@ def home(request):
             auth_logout(request)
 
         if user_profile:
+            round_1_form = FirstRoundCentreForm()
             round_1_form.fields['centre_for_first_round'].initial = user_profile.centre_for_first_round # Set centre from user_profile
-        
+            
             if request.method == 'POST':
                 round_1_form = FirstRoundCentreForm(request.POST)
                 if round_1_form.is_valid():
@@ -183,6 +217,8 @@ def home(request):
                     user_profile.save()
                     print user_profile.centre_for_first_round
                     return redirect('authmn.views.home')
+            
+                
     else:
         user = None
 
