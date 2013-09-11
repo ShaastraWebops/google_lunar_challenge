@@ -116,7 +116,7 @@ def edit_profile(request):
 
             
             
-        if request.method == 'POST':
+        if request.method == 'POST' and len(request.POST) < 10:
             round_1_form = FirstRoundCentreForm(request.POST)
             if round_1_form.is_valid():
                 user_profile.centre_for_first_round = round_1_form.cleaned_data['centre_for_first_round']
