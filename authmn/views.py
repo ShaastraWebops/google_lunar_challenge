@@ -116,7 +116,7 @@ def edit_profile(request):
 
             
             
-        if request.method == 'POST':
+        if request.method == 'POST' and len(request.POST) < 10:
             round_1_form = FirstRoundCentreForm(request.POST)
             if round_1_form.is_valid():
                 user_profile.centre_for_first_round = round_1_form.cleaned_data['centre_for_first_round']
@@ -125,14 +125,17 @@ def edit_profile(request):
                 print user_profile.centre_for_first_round
                 return redirect('authmn.views.home')
             
-        if request.method == 'POST':
-            form = EditProfileForm(request.POST,instance=user_profile)
+        elif request.method == 'POST':
+            print user_profile
+            form = EditProfileForm(request.POST,instance = user_profile)
             if form.is_valid():
                 form.save()
+                print form
                 return redirect('authmn.views.home')
                 #user.first_name=data['first_name']
                 #user.last_name=data['last_name']
                 #user.save()
+                
         else:
             form = EditProfileForm(instance=user_profile)
     else:
