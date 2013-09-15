@@ -312,6 +312,29 @@ div#home_effect div#home_moon img#fg_marquee_img {
     left : 30%;
 }
 
+#home_div_top {
+    z-index: 99;
+    position: absolute;
+    width : 100%;
+    top: 5%;
+    height: 25%;
+    color : #fff;
+}
+#home_div_top #number {
+    display : inline-block;
+    font-size : 4em;
+}
+#home_div_top #label {
+    font-size : 0.8em;
+margin-left : -20px;
+    display : inline-block;
+    transform : rotate(-90deg);
+    -webkit-transform : rotate(-90deg);
+    -moz-transform : rotate(-90deg);
+    -ms-transform : rotate(-90deg);
+    -o-transform : rotate(-90deg);
+}
+
 #home_login_div_bottom {
     z-index: 99;
     position: absolute;

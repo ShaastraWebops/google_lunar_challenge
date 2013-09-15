@@ -125,14 +125,17 @@ def edit_profile(request):
                 print user_profile.centre_for_first_round
                 return redirect('authmn.views.home')
             
-        if request.method == 'POST':
-            form = EditProfileForm(request.POST,instance=user_profile)
+        elif request.method == 'POST':
+            print user_profile
+            form = EditProfileForm(request.POST,instance = user_profile)
             if form.is_valid():
                 form.save()
+                print form
                 return redirect('authmn.views.home')
                 #user.first_name=data['first_name']
                 #user.last_name=data['last_name']
                 #user.save()
+                
         else:
             form = EditProfileForm(instance=user_profile)
     else:
@@ -141,6 +144,7 @@ def edit_profile(request):
     return render_to_response('authmn/editprofile.html', locals(), context_instance = RequestContext(request))
     
 def edit_user_profile(request):
+    registered_no = UserProfile.objects.count()
     if request.user.is_authenticated:
         try:
             user=User.objects.get(pk=request.user.id)
@@ -160,6 +164,7 @@ def edit_user_profile(request):
     return render_to_response('edituser.html', locals(), context_instance = RequestContext(request))
 
 def lunar_first_round(request):
+    registered_no = UserProfile.objects.count()
     form=FirstRoundCentreForm()
     if request.user.is_authenticated:
         user=request.user
@@ -189,7 +194,7 @@ def logout(request):
 def home(request):
     #start date, end date and today's date in seconds for the clock
     (startDate, endDate, now) = set_clock_date()
-    
+    registered_no = UserProfile.objects.count()
     round_1_form = FirstRoundCentreForm()
     
     if request.user.is_authenticated:
