@@ -329,6 +329,7 @@ div#home_effect div#home_moon img#fg_marquee_img {
     color : #fff;
     font-size : 0.8em;
     margin-top : 20px;
+    margin-left : 20px;
     display : block;
 /*    transform : rotate(-90deg);
     -webkit-transform : rotate(-90deg);
