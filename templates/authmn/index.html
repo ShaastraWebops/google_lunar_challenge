@@ -632,7 +632,7 @@ communication, strategy and the algorithms that are being implemented on the rob
             <input type="hidden" value="{{startDate}}" id="startDate_value">
             <input type="hidden" value="{{endDate}}" id="endDate_value">
             <input type="hidden" value="{{now}}" id="now_value">
-
+            
             <h4 style="width:160px; color:#ffffff"> Register within: </h4>
             <div class="clock">
                 <!-- Days -->
@@ -677,6 +677,7 @@ communication, strategy and the algorithms that are being implemented on the rob
                 </div>
                 !-- /Seconds -->
             </div>
+            <h4 style="width:160px; color:#ffffff; margin-left : 40px;"><span id='number'>{{registered_no}}</span><span id='label'>Registered</span></h4>
         </div><!--/wrapper-->
         
         <div class="home_login_div">
@@ -702,7 +703,7 @@ communication, strategy and the algorithms that are being implemented on the rob
         </div>
 
         <div id='home_div_top'>
-            <center><span id='number'>{{registered_no}}</span><span id='label'>Registered</span></center>
+            
         </div>
         {% if request.user.is_authenticated %}
             <div id="home_login_div_bottom">
