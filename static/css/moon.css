@@ -322,19 +322,19 @@ div#home_effect div#home_moon img#fg_marquee_img {
 }
 #number {
     color : #fff;
-    display : inline-block;
-    font-size : 4em;
+    display : block;
+    font-size : 70px;
 }
 #label {
     color : #fff;
     font-size : 0.8em;
-    margin-left : -20px;
-    display : inline-block;
-    transform : rotate(-90deg);
+    margin-top : 20px;
+    display : block;
+/*    transform : rotate(-90deg);
     -webkit-transform : rotate(-90deg);
     -moz-transform : rotate(-90deg);
     -ms-transform : rotate(-90deg);
-    -o-transform : rotate(-90deg);
+    -o-transform : rotate(-90deg);*/
 }
 
 #home_login_div_bottom {
