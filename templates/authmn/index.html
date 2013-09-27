@@ -540,6 +540,13 @@
                     <form method="POST"> <table class="table">{% csrf_token %} {{round_1_form.as_table}} <tr><td colspan="2"><center><input class="btn btn-inverse" type="submit" name="submit" value="    Submit    " /></center></td></tr></table></form>
                 {% endif %}
                 <p>
+                    <b><u>Judges for Round 1</u> : <span style='color : #e22'>(new)</span></b> <br/>
+                    <ol>
+                        <li><b>Mr. H.P.Biswas</b> : Ex Indian Navy and Retd Chief Engineer - Merchant Navy</li>
+                    </ol>
+                    <center><a href="{% static 'files/ppt_template.pptx' %}" class="btn btn-inverse"> Presentation Template (pptx) </a></center>
+                </p>
+                <p>
                     <b><u>Event Format</u> :</b> <br/>
                     <ol>
                         <li>Round 1 is a presentation round. All the registered participants have to make a presentation regarding the technical details of their rover.</li>
