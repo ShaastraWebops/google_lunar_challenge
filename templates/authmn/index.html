@@ -26,14 +26,14 @@
     <script type="text/javascript" src="{% static 'js/jquery.jscrollpane.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-bPopup.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/moon.js' %}"></script>
- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-42581770-1', 'shaastra.org');
-  ga('send', 'pageview');
-</script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42581770-1', 'shaastra.org');
+        ga('send', 'pageview');
+    </script>
     
     <img src="{% static 'img/rovers/rover0.png' %}" style="display:none;" id="rover0_img">
     <img src="{% static 'img/rovers/rover1.png' %}" style="display:none;" id="rover1_img">
@@ -534,76 +534,7 @@
             <div class="span6 white scroll-pane" id="right_content">
                 <button type="button" class="close close_white" onclick="$('#home_menu').click();">&times;</button>
                 <h3>LRC - ROUND 1</h3>
-<!--                <p>
-                    <center><b><span style='color : #5f5; font-size : 1.4em;'>RESULTS !</span></b> <br/></center>
-
-                    <table class='table'>
-                        <tr>
-                            <td><b>Dreamers</b></td>
-                            <td><b>Lunar Tides</b></td>
-                            <td><b>Team URVI</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Digi Creators</b></td>
-                            <td><b>X-Men</b></td>
-                            <td><b>Atom</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Sea of Tranquility</b></td>
-                            <td><b>Moon Walkers Raghavi</b></td>
-                            <td><b>Lunartics</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Team Normandy</b></td>
-                            <td><b>New Tony</b></td>
-                            <td><b>Moon Walkerz Vishal</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Chandra</b></td>
-                            <td><b>Apogees</b></td>
-                            <td><b>Moon riders</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Pi rover</b></td>
-                            <td><b>LunaX</b></td>
-                            <td><b>Team Udaan</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Dreamers2</b></td>
-                            <td><b>Team_S_five</b></td>
-                            <td><b>Bazookas</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Moon Crashers</b></td>
-                            <td><b>Lunacy bot</b></td>
-                            <td><b>PES Bot</b></td>
-                        </tr>
-                        <tr >
-                            <td colspan='3'><center><b>Lune launcers</b></center></td>
-                        </tr>
-                    </table>
-                    
-                    <center><b><span style='color : #3d3; font-size : 1.4em;'>Waitlist Teams</span></b> <br/></center>
-
-                    <table class='table'>
-                        <tr>
-                            <td><b>Moon Trotters</b></td>
-                            <td><b>Zenith Invaders</b></td>
-                            <td><b>Team Kashvi</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>Mach 5</b></td>
-                            <td><b>Hit for brains</b></td>
-                            <td><b>xploiters</b></td>
-                        </tr>
-                        <tr>
-                            <td colspan='3'><center><b>Winchesters</b></center></td>
-                        </tr>
-                    </table>
-                    
-                </p>
-                <p><b style='color : #2e2'>Note : </b>For all the waitlist teams, the final results for their selections will be announced on 14th Oct 2013.</p>
--->
+                <p><b style='color : #2e2'>Results :</b> <a href='{% static "files/lrc_results_1.pdf" %}'>Download PDF (1.9 MB)</a></p>
                 <p>
                     <b><u>Judges for Round 1</u> : </b> <br/>
                     <ol>
@@ -710,8 +641,9 @@ communication, strategy and the algorithms that are being implemented on the rob
                 <a href='#' onclick='show_page("round1_menu")' style=''>Check Results</a>
             </div>-->
             <div class="clock white" style='width : 260px; font-size: 1.2em; font-weight : 900;'>
-                Registrations are over<br />
-                Results will be announced soon<br />
+                Registrations are over<br /><br /><br />
+                <b style='color : #eee'>Results for first round</b><br />
+                <a class='btn btn-danger' href='{% static "files/lrc_results_1.pdf" %}'>Download PDF (1.9 MB)</a>
                 <br />
                 <br />
             </div>
